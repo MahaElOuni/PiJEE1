@@ -1,10 +1,13 @@
 package sessionBeans;
 
+import java.util.List;
+
 import javax.ejb.Local;
+import javax.ws.rs.core.Response;
 
 @Local
 public interface LoginServiceLocal {
 	
-	void Login();
+	public void getUsers();
 
 }
