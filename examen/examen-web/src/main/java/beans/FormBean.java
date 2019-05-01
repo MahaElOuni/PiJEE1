@@ -1,17 +1,22 @@
-package managedbeans;
+package beans;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.ApplicationException;
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import entities.Form;
 import sessionBeans.FormService;
 
 
 @ManagedBean
+@ApplicationScoped
 public class FormBean implements Serializable{
 
 	private static final long serialVersionUID=1L;
@@ -33,7 +38,21 @@ public class FormBean implements Serializable{
 	//private MethodeDePayemmentWeb MDPW;
 	
 	@EJB
-	FormService fs;
+	private FormService fs;
+	
+	private List<Form> lf;
+	
+	public List<Form> getForms(){
+		return lf;
+	}
+	public void setForms(List<Form> form){
+		this.lf=form;
+	}
+	
+	@PostConstruct
+	public void init(){
+		lf=fs.ConsommationGetAll();
+	}
 	
 	//public L
 	public FormBean() {

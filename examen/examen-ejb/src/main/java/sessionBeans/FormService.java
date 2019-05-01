@@ -1,11 +1,20 @@
 package sessionBeans;
 
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonReader;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+
+import entities.Form;
 
 /**
  * Session Bean implementation class FormService
@@ -21,23 +30,28 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
         // TODO Auto-generated constructor stub
     }
 
-	@Override
-	public void ConsommationGetAll() {
+	public List<Form> ConsommationGetAll() {
 		// TODO Auto-generated method stub
 		
+		List<Form> LF= new ArrayList<Form>();
 		Client client=ClientBuilder.newClient();
 		
-		WebTarget target=client.target("http://localhost:9233/api/FormAPIController/Get");
+		WebTarget web=client.target("http://localhost:9233/api/FormAPIController/Get");
 		
-		WebTarget hello=target.path("");
 		
-		Response response= hello.request().get();
+		Response response= web.request().get();
 		
 		String result=response.readEntity(String.class);
-		
-		System.out.println(result);
-		response.close();
-	
+		JsonReader jsonReader= Json.createReader(new StringReader(result));
+		JsonArray object= jsonReader.readArray();
+		for (int i=0; i<object.size(); i++)
+		{
+			Form f= new Form();
+			f.setPseudo(object.getJsonObject(i).getString("Pseudo").toString());
+			f.setAge(Integer.parseInt(object.getJsonObject(i).toString()));
+			LF.add(f);
+		}
+	return LF;	
 
 	}
 
