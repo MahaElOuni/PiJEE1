@@ -21,10 +21,12 @@ public class Form implements Serializable {
 	private String photos;
 	private String cin;
 	private int age;
+	private Sex sex;
 	private String profession;
 	private String countrie;
 	private String address;
 	private Boolean participant;
+	private MethodeDePayemment mdp;
 	private static final long serialVersionUID = 1L;
 
 	public Form() {
