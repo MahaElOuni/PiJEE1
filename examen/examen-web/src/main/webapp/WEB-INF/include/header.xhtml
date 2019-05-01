@@ -19,7 +19,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="${facesContext.externalContext.requestContextPath}/xhtml/home.xhtml">Home</a></li>
 
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
@@ -40,8 +40,8 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${facesContext.externalContext.requestContextPath}/xhtml/homeContact.xhtml">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${facesContext.externalContext.requestContextPath}/xhtml/homeAbout.xhtml">About</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,8 @@
 
 
                             <li class="nav-item submenu dropdown">
-                                <a href="" class="tickets_btn">Log Out</a>
+                                <h:commandButton class="tickets_btn" id="btn" value="Log Out" action="#{loginBean.doLogout}" />
+                               <!--   <a href="" class="tickets_btn">Log Out</a>-->
                                 <ul>
                                     <li class="nav-item"><a class="nav-link" href="">Show Profile</a></li>
 

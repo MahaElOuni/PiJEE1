@@ -21,12 +21,14 @@ public class LoginBean implements Serializable {
 		String navigateTo = "null";
 		user=loginService.loginCheck(login, password);
 		if (user != 0 ) {
-			navigateTo ="/xhtml/home?faces-redirect=true"; loggedIn = true; 		
+			navigateTo = "/xhtml/home?faces-redirect=true"; 
+			loggedIn = true; 		
 		}
 		else {
 			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
 		}
 	return navigateTo; 
+	
 	}
 	
 	public String doLogout() {

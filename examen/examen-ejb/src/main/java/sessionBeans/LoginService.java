@@ -43,10 +43,11 @@ public class LoginService implements LoginServiceRemote, LoginServiceLocal {
         response.close();
 
     }
-    
-    public int loginCheck(String email,String password){
-    	
-    	int i;
+
+	@Override
+	public int loginCheck(String email, String password) {
+		// TODO Auto-generated method stub
+		int i;
     	Form form = new Form();
 		form.param("Email",email);
 		form.param("Password",password);
@@ -69,65 +70,9 @@ public class LoginService implements LoginServiceRemote, LoginServiceLocal {
         
 
        return i;
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-//       @GET
-//   	
-//   	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
-//   	public ArrayList<Object> getAll(){
-//   		
-//   		String lr= sug.getAll();		       
-//           JSONArray array = new JSONArray(lr);
-//           ArrayList<Object> listdata = new ArrayList<Object>();     
-//           
-//           if (array != null) { 
-//              for (int i=0;i<array.length();i++){ 
-//               listdata.add(array.get(i));
-//               System.out.println(array.get(i));
-//              } 
-//           }
-//         
-//          // 	System.out.println(array);
-//           	//System.out.println(obj.getInt("id"));
-//           return listdata;
-   		
-  // 	}
     	
-    	
-    	
-    }
+	}
+
 	
 
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<ui:insert name="title"></ui:insert>
+		<meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+        <link rel="icon" href="${facesContext.externalContext.requestContextPath}/img/favicon.png" type="image/png"></link>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/css/bootstrap.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/vendors/linericon/style.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/vendors/owl-carousel/owl.carousel.min.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/vendors/lightbox/simpleLightbox.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/vendors/nice-select/css/nice-select.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/vendors/animate-css/animate.css"></link>
+       
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/css/style.css"></link>
+        <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/css/responsive.css"></link>
+</h:head> 
+<body> 
+
+<ui:include src="/WEB-INF/include/header0.xhtml"></ui:include>
+	<ui:insert name="content"></ui:insert>
+	<br></br>
+	<ui:include src="/WEB-INF/include/footer.xhtml"></ui:include>
+</body> 
+</html>
