@@ -9,5 +9,6 @@ import javax.ws.rs.core.Response;
 public interface LoginServiceLocal {
 	
 	public void getUsers();
-
+	public int loginCheck(String email,String password);
+	
 }

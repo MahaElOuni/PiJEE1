@@ -7,6 +7,6 @@ import javax.ws.rs.core.Response;
 
 @Remote
 public interface LoginServiceRemote {
-	public void getUsers();
-
+	 public void getUsers();
+	 public int loginCheck(String email,String password);
 }
