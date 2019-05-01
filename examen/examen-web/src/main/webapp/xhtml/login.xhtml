@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/WEB-INF/template/template.xhtml"> 
+      
+      
+    <ui:define name="title">
+		<title>Login</title>
+	</ui:define> 
+	<ui:define name="content">
+	
+	<!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<div class="page_link">
+							<a href="${facesContext.externalContext.requestContextPath}/xhtml/index.xhtml">Home</a>
+							<a href="${facesContext.externalContext.requestContextPath}/xhtml/about.xhtml">About</a>
+						</div>
+						<h2>About Event</h2>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+	<br /><br />
+	<div class="row">
+	
+    <div class="col-md-12">
+        <div class="card" style="max-width:500px;margin:auto; align-content:center;align-self:center;">
+        
+         <h5 class="card-header info-color white-text text-center py-4" style="background-color:	indigo">
+                    <strong style="color:white">WELCOME DEAR VISITOR</strong>
+                </h5>
+                <br />
+        
+        <div class="card-body px-lg-5 pt-0">
+                    <!-- Form -->
+                    <form class="text-center" action="">
+                            
+                            <!-- Email -->
+                            <div class="md-form">
+                                 <label for="materialLoginFormEmail">E-mail</label>
+                            	<input type="email" id="materialLoginFormEmail" class="form-control" value="#{loginBean.login}"/>
+                            	
+                            	<!-- <h:outputText value="Login" /> <h:inputText value="#{loginBean.login}" />-->
+                            </div>
+                            
+                            <!-- Password -->
+                            <div class="md-form">
+                                 <label for="materialLoginFormPassword">Password</label> 
+                            	 <input type="password" id="materialLoginFormPassword" class="form-control" value="#{loginBean.password}"/>
+                            	
+                            	<!--<h:outputText value="Mot de passe" /> <h:inputSecret value="#{loginBean.password}" />-->
+                            </div>
+        				   <!-- <button class="main_btn" type="submit" style="margin-left:130px" >Sign in</button>-->
+        				    <h:commandButton id="btn" value="Connexion" action="#{loginBean.doLogin()}" />
+        				
+                     </form>
+        
+        </div>
+        </div>
+        </div>
+	   </div>
+	
+	</ui:define>
+</ui:composition>
