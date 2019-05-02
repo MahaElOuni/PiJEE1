@@ -17,4 +17,5 @@ public class BlogService implements BlogServiceRemote, BlogServiceLocal {
         // TODO Auto-generated constructor stub
     }
 
+    
 }
