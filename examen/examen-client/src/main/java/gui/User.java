@@ -15,7 +15,9 @@ public class User {
 		Object obj = ctx.lookup("/examen-ear/examen-ejb/LoginService!sessionBeans.LoginServiceRemote");
 		
 		LoginServiceRemote user=(LoginServiceRemote) obj;
-		user.getUsers();
+		//user.getUsers();
+		System.out.println(user.loginCheck("consultteck2019@gmail.com", "Admin2019*"));
+		
 	}
 
 }
