@@ -13,9 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 
 
 import sessionBeans.EventService;
