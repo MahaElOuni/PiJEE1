@@ -4,25 +4,58 @@ import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import sessionBeans.AdminServiceRemote;
 import sessionBeans.LoginService;
-
-public class LoginBean implements Serializable {
+import sessionBeans.LoginServiceRemote;
+@ManagedBean
+@RequestScoped
+public class Loginbean implements Serializable {
 	private String login; 
 	private String password;
 	private int user;
 	private Boolean loggedIn;
+	private String role;
+	private String etat;
+	
 	@EJB
-	LoginService loginService;
+	LoginServiceRemote loginService;
+	
+	@EJB
+	AdminServiceRemote adminService;
+	
 	
 	public String doLogin()
 	{
 		String navigateTo = "null";
 		user=loginService.loginCheck(login, password);
-		if (user != 0 ) {
-			navigateTo = "/xhtml/home?faces-redirect=true"; 
-			loggedIn = true; 		
+		
+
+		if ( user != 0 ) {
+			
+			role = adminService.getRoleByIdUser(user);
+			etat = adminService.getEtatByIdUser(user);
+			
+			if(role.equals("Admin")){
+				navigateTo = "/xhtml/admin.xhtml"; 
+				loggedIn = true; 
+			}
+			else{
+				if(etat.equals("Pending")){
+					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("stana la7dha"));
+				}
+				else if (etat.equals("Rejected")){
+					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("bara rawa7"));
+				}
+				else{
+					navigateTo = "/xhtml/home.xhtml"; 
+					loggedIn = true; 	
+				}
+			}
+				
 		}
 		else {
 			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));
@@ -68,13 +101,23 @@ public class LoginBean implements Serializable {
 		this.loggedIn = loggedIn;
 	}
 
-	public LoginService getLoginService() {
-		return loginService;
+	public String getRole() {
+		return role;
 	}
 
-	public void setLoginService(LoginService loginService) {
-		this.loginService = loginService;
+	public void setRole(String role) {
+		this.role = role;
 	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	
 	
 	
 

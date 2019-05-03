@@ -41,24 +41,24 @@
         
         <div class="card-body px-lg-5 pt-0">
                     <!-- Form -->
-                    <form class="text-center" action="">
+                    <h:form class="text-center" id="form" >
                             
                             <!-- Email -->
                             <div class="md-form">
                             	<!-- <input type="email" id="materialLoginFormEmail" class="form-control"/>
                             	<label for="materialLoginFormEmail">E-mail</label>-->
-                            	<h:outputText value="Login" /> <h:inputText  class="form-control" value="#{loginBean.login}" />
+                            	<h:outputText value="Login" /> <h:inputText  class="form-control" value="#{loginbean.login}" />
                             </div>
                             <br></br>
                             <!-- Password -->
                             <div class="md-form">
                             	 <!--<input type="password" id="materialLoginFormPassword" class="form-control"/>
                             	<label for="materialLoginFormPassword">Password</label> -->
-                            	<h:outputText value="Password" /> <h:inputSecret class="form-control" value="#{loginBean.password}" />
+                            	<h:outputText value="Password" /> <h:inputSecret class="form-control" value="#{loginbean.password}" />
                             </div>
                             <br></br>
         				   <!-- <button class="main_btn" type="submit" style="margin-left:130px" >Sign in</button>-->
-        				    <h:commandButton class="main_btn" id="btn" value="Sign in" action="#{loginBean.doLogin()}" />
+        				    <h:commandButton class="main_btn" id="btn" value="Sign in" action="#{loginbean.doLogin()}" />
         				    <h:message for="btn"/>
         				    
         				    <hr></hr>
@@ -136,7 +136,7 @@
 								</body>
 							</html>		    			
         				    </div>	
-                     </form>
+                     </h:form>
         
         </div>
         </div>
