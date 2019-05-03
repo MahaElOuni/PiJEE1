@@ -43,8 +43,8 @@
 </div>
 
  <h:form>
-<h:dataTable value="${recommendationBean.all}" var="recommendation" border="1">
-<h:column><f:facet name="header"><h:outputText value="Login" /></f:facet>
+<h:dataTable value="${recommendation.all}" var="recommendation" border="1">
+<h:column>
 <h:outputText value="${recommendation.get('Email')}" /></h:column>
 </h:dataTable>
 </h:form>

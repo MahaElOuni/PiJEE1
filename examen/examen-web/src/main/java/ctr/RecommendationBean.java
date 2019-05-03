@@ -1,12 +1,6 @@
 package ctr;
-
-
-
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,9 +14,9 @@ import sessionBeans.RecommendationService;
 
 @ManagedBean(name = "recommendationBean")
 @SessionScoped
-public class Recommendation implements Serializable{
+public class RecommendationBean implements Serializable{
 	
-	 String Email ;
+	 String EmailParticipent ;
 	
 	 ArrayList<Object> listdata = new ArrayList<Object>();   
 	 @EJB
@@ -47,6 +41,17 @@ public class Recommendation implements Serializable{
 	        return listdata;
 			
 		}
+
+	public String getEmailParticipent() {
+		return EmailParticipent;
+	}
+
+	public void setEmailParticipent(String emailParticipent) {
+		EmailParticipent = emailParticipent;
+	}
+
+	
+	 
 	 
 
 }
