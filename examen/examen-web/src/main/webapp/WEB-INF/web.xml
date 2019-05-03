@@ -11,6 +11,16 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-  	<welcome-file>xhtml/index.xhtml</welcome-file>
+    <welcome-file>xhtml/index.xhtml</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>SampleLongPollingRegistration</display-name>
+    <servlet-name>SampleLongPollingRegistration</servlet-name>
+    <servlet-class>ctr.SampleLongPollingRegistration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SampleLongPollingRegistration</servlet-name>
+    <url-pattern>/SampleLongPollingRegistration</url-pattern>
+  </servlet-mapping>
 </web-app>
