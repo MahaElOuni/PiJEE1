@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="/WEB-INF/template/template.xhtml"> 
+
+<ui:define name="title">
+		<title>Admin Home</title>
+	</ui:define>
+	
+	<ui:define name="content">
+	
+	<!--================Welcome Home Banner Area =================-->
+<section class="home_banner_area">
+    <div class="banner_inner">
+        <div class="container">
+
+            <div class="banner_content">
+                <h2>Your Event from conception to realization!</h2>
+                <p>Helping event and meeting planners create valuable in-person experiences, grow influential communities and expand brands.</p>
+                <a class="banner_btn" href="">View More Details</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+	<br />
+	<br />	
+	<h1 class="text-primary">Pending users list </h1>	
+	
+	<h:form id="form">
+	<h:dataTable value="#{adminbean.users}" var="user" border="1" class="table table-striped" >
+	
+	
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="First Name" />
+		</f:facet>
+		<h:outputText value="#{user.firstName}" />
+	</h:column>
+	
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="Last Name" />
+		</f:facet>
+		<h:outputText value="#{user.lastName}" />
+	</h:column>
+		
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="Email" />
+		</f:facet>
+		<h:outputText value="#{user.email}" />
+	</h:column>
+	
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="Post" />
+		</f:facet>
+		<h:outputText value="#{user.role}" />
+	</h:column>
+	
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="Action" />
+		</f:facet>
+		
+		<h:commandButton action="#{adminbean.acceptUser(user.id)}" value="Accept" class="btn btn-success" /> 
+	    <h:commandButton action="#{adminbean.rejectUser(user.id)}" value="Reject" class="btn btn-danger" /> 
+
+	    
+	</h:column>
+	
+		
+
+	
+	</h:dataTable>
+	</h:form>
+	
+	<center> <p:barcode value="test" type="qr" /> </center>
+	
+	</ui:define>
+
+
+</ui:composition>

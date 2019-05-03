@@ -37,7 +37,7 @@ public class LoginService implements LoginServiceRemote, LoginServiceLocal {
     	Client client = ClientBuilder.newClient();
         WebTarget target=client.target("http://localhost:9233/api/AdminAPI/Get");
     	WebTarget hello = target.path("");
-        Response response=hello.request().get();
+        Response response=hello.request().get();   
         String result= response.readEntity(String.class);
         System.out.println(result);
         response.close();
@@ -66,12 +66,10 @@ public class LoginService implements LoginServiceRemote, LoginServiceLocal {
 		}catch(Exception e){
 			return 0;
 		};
-        
-        
-
        return i;
     	
 	}
+	
 
 	
 
