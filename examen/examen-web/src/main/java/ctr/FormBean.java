@@ -34,6 +34,25 @@ public class FormBean implements Serializable {
 	private int eventId;
 	private String title;
 	private String methodeDePayemment;
+	private String participant;
+
+	public String getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(String participant) {
+		this.participant = participant;
+	}
+
+	private String part= null;
+	public String getPart() {
+		return part;
+	}
+
+	public void setPart(String part) {
+		this.part = part;
+	}
+
 	ArrayList<Object> listdata= new ArrayList<Object>();
 	@EJB
 	FormService formService;
@@ -47,12 +66,67 @@ public class FormBean implements Serializable {
 		
 		if(array!= null){
 			for(int i=0; i<array.length(); i++){
+				
+				
 				listdata.add(array.get(i));
+
+				
 			}
 		}
 		return listdata;
 	}
 
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Object> getById(int id){
+		String lr= formService.consommationGetById(id);
+		JSONArray array= new JSONArray(lr);
+		ArrayList<Object> listdata=new ArrayList<Object>();
+		
+		if(array!= null){
+			for(int i=0; i<array.length(); i++){
+				
+				if(array.getString(13)=="0")
+					part="Waiting";
+					else
+						part="Participant";
+					
+				listdata.add(array.get(i));
+
+				
+			}
+		}
+		return listdata;
+	}
+
+
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Object> getByEventId(int id){
+		String lr= formService.consommationGetByEvent(id);
+		JSONArray array= new JSONArray(lr);
+		ArrayList<Object> listdata=new ArrayList<Object>();
+		
+		if(array!= null){
+			for(int i=0; i<array.length(); i++){
+				
+				if(array.getString(13)=="0")
+					part="Waiting";
+					else
+						part="Participant";
+					
+				listdata.add(array.get(i));
+
+				
+			}
+		}
+		return listdata;
+	}
+
+	
+	
 	public int getFormId() {
 		return formId;
 	}

@@ -32,15 +32,21 @@
     <div class="blog_right_sidebar" style="background-color:transparent;border:thin">
         <aside class="single_sidebar_widget search_widget" style="background-color:transparent">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" id="Search"></input>
+                <input type="text" class="form-control" placeholder="Search By FormId" id="Search"></input>
+                
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
                 </span>
+                
             </div><!-- /input-group -->
             <div class="br"></div>
-        </aside>
+             </aside>
     </div>
 </div>
+
+
+
+
 
 <h:form>
 <h:dataTable value="${formBean.all}" var="form" border="1">
@@ -54,6 +60,20 @@
 <h:outputText value="${form.get('FormDate')}" /></h:column>
 <h:column><f:facet name="header"><h:outputText value="Profession" /></f:facet>
 <h:outputText value="${form.get('Profession')}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Mail" /></f:facet>
+<h:outputText value="${form.get('Mail')}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Countrie" /></f:facet>
+<h:outputText value="${form.get('Countrie')}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Address" /></f:facet>
+<h:outputText value="${form.get('Address')}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="EventId" /></f:facet>
+<h:outputText value="${form.get('EventId')}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Participant" /></f:facet>
+<h:outputText value="${form.get('Participant')}" /></h:column>
+
+
+
+
 
 
 

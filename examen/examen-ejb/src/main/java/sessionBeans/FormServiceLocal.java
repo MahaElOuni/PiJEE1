@@ -6,5 +6,7 @@ import javax.ejb.Local;
 public interface FormServiceLocal {
 
 	public String consommationGet();
+	public String consommationGetById(int id);
+	public String consommationGetByEvent(int id);
 
 }

@@ -32,7 +32,32 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 		System.out.println(result);
 		return result;
 	}
-    
+
+	@Override
+	public String consommationGetByEvent(int id) {
+		Client client =ClientBuilder.newClient();
+		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/ByEvent/"+id);
+		Response response= target.request().get();
+		String result= response.readEntity(String.class);
+		System.out.println(result);
+		return result;
+	
+
+		
+	}
+
+	@Override
+	public String consommationGetById(int id) {
+		Client client =ClientBuilder.newClient();
+		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/Get/"+id);
+		Response response= target.request().get();
+		String result= response.readEntity(String.class);
+		System.out.println(result);
+		return result;
+
+	}
+
+	
     
     
 
