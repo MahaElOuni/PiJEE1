@@ -80,7 +80,7 @@
                     
 						<li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton class="genric-btn default-border circle arrow" action="${eventBean.}" onclick="this.form.target='_blank'">View Report<span class="lnr lnr-arrow-right"></span></h:commandButton></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow">Edit Event<span class="lnr lnr-arrow-right"></span></a></li>
-                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a class="genric-btn default-border circle arrow" data-toggle="modal" data-target=".bootstrapmodal">Add Organizer<span class="lnr lnr-arrow-right"></span></a></li>
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a class="genric-btn default-border circle arrow" >Add Organizer<span class="lnr lnr-arrow-right"></span></a></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow" >Participant List<span class="lnr lnr-arrow-right"></span></a></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconDelere.png" style="height:20px;width:20px" /><button class="genric-btn default-border circle arrow">Delete</button></li>
                     </ul>
@@ -94,77 +94,7 @@
     <!--================End Welcome Area =================-->
 
 
-    <!--============================ Welcome Add Organizer ====================================-->
-
-    <div class="modal fade bootstrapmodal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="model-header">
-                    <button data-dismiss="modal" class="close"><span>&times;</span></button>
-                    <div class="modal-title"><h2>Designates an Organizer</h2></div>
-                </div>
-                <div class="modal-body">
-
-
-                    <div class="switch-wrap d-flex justify-content-between">
-                        <input placeholder="Organizer Email" type="email" id="email" />
-                        <select class="default-select" id="TaskId" name="TaskId">
-                            <option>Select Task</option>
-                            <option>Fix Rewards</option>
-                            <option>view Statistic</option>
-                            <option>Display rewards</option>
-                            <option>Add Recommendation</option>
-                            <option>Display Recommendation</option>
-                        </select>
-                        <button class="btn sub-btn" OnClick="addition()">+</button>
-                        <script>
-                            function addition() {
-                                var email = document.getElementById("email").value;
-                                var taskId = document.getElementById("TaskId");
-                                var task = taskId.options[taskId.selectedIndex].value;
-                                var eventId = document.getElementById("eventId").value;
-                                console.log(email);
-                                console.log(taskId);
-                                console.log(task);
-                                console.log(eventId);
-                                $('#tab tr:last').after("<tr><td>" + email + "</td><td> " + "  -  " + task + "</td>");
-                                $.ajax({
-                                    url: "/Tasks/AddTask",
-                                    type: "POST",
-                                    data: {
-                                        'id': eventId, 'email': email, 'taskName': task
-                                    }
-                                });
-
-
-                            }
-                        </script>
-
-                    </div>
-                    <table id="tab">
-                        <thead>
-                            <tr>
-                                <th scope="col">Organizer</th>
-
-                                <th scope="col">Task</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr></tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="modal-footer">
-
-
-                    <button class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--============================ End Add Organizer ====================================-->
+   
  </ui:repeat>
 	</ui:define>
 </ui:composition>
