@@ -3,6 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       template="/WEB-INF/template/template.xhtml"> 
 
 	<ui:define name="title">
@@ -28,7 +29,7 @@
 </section>
 <!--================End Home Banner Area =================-->
 <br />
-<div class="col-lg-4" style="background-color:transparent;margin-left:1050px">
+<!-- <div class="col-lg-4" style="background-color:transparent;margin-left:1050px">
     <div class="blog_right_sidebar" style="background-color:transparent;border:thin">
         <aside class="single_sidebar_widget search_widget" style="background-color:transparent">
             <div class="input-group">
@@ -38,15 +39,16 @@
                     <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
                 </span>
                 
-            </div><!-- /input-group -->
+            </div>
             <div class="br"></div>
              </aside>
     </div>
 </div>
 
-
-
-
+ -->
+ 
+ 
+ 
 
 <h:form>
 <h:dataTable value="${formBean.all}" var="form" border="1">
@@ -70,8 +72,11 @@
 <h:outputText value="${form.get('EventId')}" /></h:column>
 <h:column><f:facet name="header"><h:outputText value="Participant" /></f:facet>
 <h:outputText value="${form.get('Participant')}" /></h:column>
+<h:commandButton class="main_btn" id="btn" value="Details" action="#{formBean.getById(formBean.eventId)}" />
 
 
+<p:commandButton value="Detail" action="#{quizBean.getQuizById(q.quizId)}"  ></p:commandButton>
+              
 
 
 

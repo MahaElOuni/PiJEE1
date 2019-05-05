@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+     
+   
+    <ui:define name="content">
+<h:head></h:head>
+<body>
+	<h2>Quiz Details</h2>
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<h:outputText value="FormId " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.formId}" style="font-weight:bold" />
+				<h:outputText value="EventId " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.eventId}" style="font-weight:bold" />
+				<h:outputText value="Title " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.title}" style="font-weight:bold" />
+
+				<h:outputText value="Pseudo " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.pseudo}" style="font-weight:bold" />
+				<h:outputText value="CIN " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.cin}" style="font-weight:bold" />
+				<h:outputText value="Mail " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.mail}" style="font-weight:bold" />
+				<h:outputText value="Age " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.age}" style="font-weight:bold" />
+				<h:outputText value="Profession " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.profession}"
+					style="font-weight:bold" />
+				<h:outputText value="Countrie " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.countrie}"
+					style="font-weight:bold" />
+				<h:outputText value="Address " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.address}" style="font-weight:bold" />
+				<h:outputText value="Participant " style="font-weight:bold" />
+				<h:outputText value="#{formBean.o.participant}"
+					style="font-weight:bold" />
+
+
+
+			</h:panelGrid>
+
+		</h:form>
+
+	</body>
+    </ui:define>
+
+</ui:composition>    

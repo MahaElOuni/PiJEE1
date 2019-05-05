@@ -2,11 +2,13 @@ package sessionBeans;
 
 import javax.ejb.Local;
 
+import persistence.Form;
+
 @Local
 public interface FormServiceLocal {
 
 	public String consommationGet();
-	public String consommationGetById(int id);
-	public String consommationGetByEvent(int id);
+	public Form getById(int id);
+	public String consommationGetByEvent();
 
 }

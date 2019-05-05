@@ -11,6 +11,9 @@
         <dependent-module archiveName="json.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/json/json/20180813/json-20180813.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jackson-core-asl.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.2/jackson-core-asl-1.9.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="javax.ws.rs-api.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0-m02/javax.ws.rs-api-2.0-m02.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>

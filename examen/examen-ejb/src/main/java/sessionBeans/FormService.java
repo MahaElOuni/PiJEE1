@@ -7,6 +7,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
+import persistence.Form;
+
 /**
  * Session Bean implementation class FormService
  */
@@ -34,9 +36,9 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 	}
 
 	@Override
-	public String consommationGetByEvent(int id) {
+	public String consommationGetByEvent() {
 		Client client =ClientBuilder.newClient();
-		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/ByEvent/"+id);
+		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/ByEvent/");
 		Response response= target.request().get();
 		String result= response.readEntity(String.class);
 		System.out.println(result);
@@ -47,18 +49,21 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 	}
 
 	@Override
-	public String consommationGetById(int id) {
-		Client client =ClientBuilder.newClient();
-		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/Get/"+id);
-		Response response= target.request().get();
-		String result= response.readEntity(String.class);
-		System.out.println(result);
-		return result;
-
+	public Form getById(int id) {
+			System.out.println("***** get condidate *****");
+	    	Client cl = ClientBuilder.newClient();
+			WebTarget target = cl.target("http://localhost:9233/api"); 
+			WebTarget hello = target.path("FormAPIController/Get/"+id);     	
+	    	Response res=(Response) hello.request().get();
+	    	Form condi = res.readEntity(Form.class);
+			 
+			return condi;
+	    }
+		
 	}
 
 	
     
     
 
-}
+

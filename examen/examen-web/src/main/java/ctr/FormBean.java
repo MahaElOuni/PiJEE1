@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
+import persistence.Form;
 import sessionBeans.FormService;
 
 @ManagedBean(name="formBean")
@@ -35,6 +36,16 @@ public class FormBean implements Serializable {
 	private String title;
 	private String methodeDePayemment;
 	private String participant;
+	
+	private Form o;
+
+	public Form getO() {
+		return o;
+	}
+
+	public void setO(Form o) {
+		this.o = o;
+	}
 
 	public String getParticipant() {
 		return participant;
@@ -77,27 +88,23 @@ public class FormBean implements Serializable {
 	}
 
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Object> getById(int id){
-		String lr= formService.consommationGetById(id);
-		JSONArray array= new JSONArray(lr);
-		ArrayList<Object> listdata=new ArrayList<Object>();
+	public String getById(int id){
+			o= formService.getById(id);
+		setFormId(o.getFormId());
+		setEventId(o.getEventId());
+		setTitle(o.getTitle());
+		setPseudo(o.getPseudo());
+		setCin(o.getCin());
+		setMail(o.getMail());
+		setAge(o.getAge());
+		setProfession(o.getProfession());
+		setCountrie(o.getCountrie());
+		setAddress(o.getAddress());
+		setParticipant(o.getParticipant());
 		
-		if(array!= null){
-			for(int i=0; i<array.length(); i++){
-				
-				if(array.getString(13)=="0")
-					part="Waiting";
-					else
-						part="Participant";
-					
-				listdata.add(array.get(i));
-
-				
-			}
-		}
-		return listdata;
+		
+		
+		return "DetailsForms.jsf?faces-redirect=true";
 	}
 
 
@@ -105,7 +112,7 @@ public class FormBean implements Serializable {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Object> getByEventId(int id){
-		String lr= formService.consommationGetByEvent(id);
+		String lr= formService.consommationGetByEvent();
 		JSONArray array= new JSONArray(lr);
 		ArrayList<Object> listdata=new ArrayList<Object>();
 		
