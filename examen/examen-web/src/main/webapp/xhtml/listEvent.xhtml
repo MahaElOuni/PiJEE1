@@ -11,8 +11,9 @@
 	
 	<ui:define name="content">
 	<!--================Welcome Home Banner Area =================-->
+<!--================Welcome Home Banner Area =================-->
 <section class="banner_area">
-    <div class="banner_inner d-flex align-items-center" style="background-image:url(../../img/banner/home-banner.jpg)">
+    <div class="banner_inner d-flex align-items-center" style="background-image:url(${facesContext.externalContext.requestContextPath}/img/banner/home-banner.jpg)">
         <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
         <div class="container">
             <div class="banner_content text-center">
@@ -32,7 +33,7 @@
     <div class="blog_right_sidebar" style="background-color:transparent;border:thin">
         <aside class="single_sidebar_widget search_widget" style="background-color:transparent">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" id="Search"></input>
+                <input type="text" class="form-control" placeholder="Search" id="Search"/>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
                 </span>
@@ -42,12 +43,68 @@
     </div>
 </div>
 
- <h:form>
-<h:dataTable value="${eventBean.all}" var="event" border="1">
-<h:column><f:facet name="header"><h:outputText value="Login" /></f:facet>
-<h:outputText value="${event.get('Description')}" /></h:column>
-</h:dataTable>
-</h:form>
+
+	<ui:repeat  value="${eventBean.all}" var="event">
+    <!--================Welcome Area =================-->
+    <div class="Search">
+        <section class="welcome_area pad_btm">
+            <div class="container">
+                <div class="welcome_inner row">
+                    <div class="col-lg-5" style="width:300%;">
+                        <div class="categories_post">
+                            <img src="${facesContext.externalContext.requestContextPath}/img/${event.get('Photo')}" alt="post" style="height:350px;width:450px"/>
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <a href=""><h:outputText value="${event.get('Type')}" /></a>
+                                    <div class="border_line"></div>
+                                    <p><h:outputText value="${event.get('Slogan')}" /></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1">
+                        <div>
+
+                            <div class="media-body">
+                                <h2 style="color:black"> <span><h:outputText value="${event.get('Title')}" /></span></h2>
+                                <br />
+                                <div class="media">
+                                    <img src="${facesContext.externalContext.requestContextPath}/img/icons/iconCalendar.png" style="height:30px;width:30px;"></img>
+                                    <p><strong><h:outputText value="${event.get('Start')}" /></strong></p>
+                                    <label style="color:white">Hello</label>
+                                    <img src="${facesContext.externalContext.requestContextPath}/img/icons/locationIcon.png" style="height:27px;width:30px;"></img>
+                                    <p><strong><h:outputText value="${event.get('Address')}" /></strong></p>
+                                </div>
+
+                                <p><h:outputText value="${event.get('Description')}" /></p>
+                                <h6>Organized by:<h:outputText value="${event.get('OrganizedBy')}" /></h6>
+                            </div>
+
+                          
+
+
+                            <a class="main_btn" href="">dislike</a>
+
+                            <a class="main_btn" href="">like</a>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--================End Welcome Area =================-->
+    </ui:repeat>
+
+	
+  
 	</ui:define>
 	
 </ui:composition>

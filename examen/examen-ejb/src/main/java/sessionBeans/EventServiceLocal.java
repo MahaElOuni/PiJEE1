@@ -5,5 +5,6 @@ import javax.ejb.Local;
 @Local
 public interface EventServiceLocal {
 	public String consomation();
+	public String consomationPresidentEvent();
 
 }

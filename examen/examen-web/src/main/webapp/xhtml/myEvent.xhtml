@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/WEB-INF/template/template.xhtml">
+	<ui:define name="title">
+		<title>My Event</title>
+	</ui:define>
+	<ui:define name="content">
+	  	<!--================Welcome Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center" style="background-image:url(../../img/banner/home-banner.jpg)">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="banner_content text-center">
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+                    <a href="about-us.html">My Event</a>
+                </div>
+                <br />
+                <h2>You Are President In This Events</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<br />
+
+<ui:repeat  value="${eventBean.eventsPresident}" var="event">
+
+
+    <!--================Welcome Area =================-->
+    <section class="welcome_area pad_btm">
+        <div class="container">
+            <div class="welcome_inner row">
+                <div class="col-lg-4">
+                    <div class="categories_post">
+                        <img src="${facesContext.externalContext.requestContextPath}/img/${event.get('Photo')}" alt="post" style="height:350px;width:450px"/>
+                       <div class="categories_details">
+                                <div class="categories_text">
+                                    <a href=""><h:outputText value="${event.get('Type')}" /></a>
+                                    <div class="border_line"></div>
+                                    <p><h:outputText value="${event.get('Slogan')}" /></p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 offset-lg-1">
+                    <div>
+                        <br />
+                        <br />
+                        <div class="media-body">
+                            <h2 style="color:black">
+                                <span> <h:outputText value="${event.get('Title')}" /></span>
+                            </h2>
+                            <br />
+                            <div class="media">
+                                    <img src="${facesContext.externalContext.requestContextPath}/img/icons/iconCalendar.png" style="height:30px;width:30px;"></img>
+                                    <p><strong><h:outputText value="${event.get('Start')}" /></strong></p>
+                                    <label style="color:white">Hello</label>
+                                    <img src="${facesContext.externalContext.requestContextPath}/img/icons/locationIcon.png" style="height:27px;width:30px;"></img>
+                                    <p><strong><h:outputText value="${event.get('Address')}" /></strong></p>
+                                </div>
+
+                                <p><h:outputText value="${event.get('Description')}" /></p>
+                                <h6>Organized by:<h:outputText value="${event.get('OrganizedBy')}" /></h6>
+					</div>
+                    </div>
+                </div>
+                <div class="blog_info text-sm-left">
+                    <div class="post_tag">
+
+                        <br />
+                        <h4 style="color:darkred">Your Actions</h4>
+
+                    </div>
+                    <ul class="blog_meta list">
+                    
+						<li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton class="genric-btn default-border circle arrow" action="${eventBean.}" onclick="this.form.target='_blank'">View Report<span class="lnr lnr-arrow-right"></span></h:commandButton></li>
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow">Edit Event<span class="lnr lnr-arrow-right"></span></a></li>
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a class="genric-btn default-border circle arrow" data-toggle="modal" data-target=".bootstrapmodal">Add Organizer<span class="lnr lnr-arrow-right"></span></a></li>
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow" >Participant List<span class="lnr lnr-arrow-right"></span></a></li>
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconDelere.png" style="height:20px;width:20px" /><button class="genric-btn default-border circle arrow">Delete</button></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!--================End Welcome Area =================-->
+
+
+    <!--============================ Welcome Add Organizer ====================================-->
+
+    <div class="modal fade bootstrapmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="model-header">
+                    <button data-dismiss="modal" class="close"><span>&times;</span></button>
+                    <div class="modal-title"><h2>Designates an Organizer</h2></div>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="switch-wrap d-flex justify-content-between">
+                        <input placeholder="Organizer Email" type="email" id="email" />
+                        <select class="default-select" id="TaskId" name="TaskId">
+                            <option>Select Task</option>
+                            <option>Fix Rewards</option>
+                            <option>view Statistic</option>
+                            <option>Display rewards</option>
+                            <option>Add Recommendation</option>
+                            <option>Display Recommendation</option>
+                        </select>
+                        <button class="btn sub-btn" OnClick="addition()">+</button>
+                        <script>
+                            function addition() {
+                                var email = document.getElementById("email").value;
+                                var taskId = document.getElementById("TaskId");
+                                var task = taskId.options[taskId.selectedIndex].value;
+                                var eventId = document.getElementById("eventId").value;
+                                console.log(email);
+                                console.log(taskId);
+                                console.log(task);
+                                console.log(eventId);
+                                $('#tab tr:last').after("<tr><td>" + email + "</td><td> " + "  -  " + task + "</td>");
+                                $.ajax({
+                                    url: "/Tasks/AddTask",
+                                    type: "POST",
+                                    data: {
+                                        'id': eventId, 'email': email, 'taskName': task
+                                    }
+                                });
+
+
+                            }
+                        </script>
+
+                    </div>
+                    <table id="tab">
+                        <thead>
+                            <tr>
+                                <th scope="col">Organizer</th>
+
+                                <th scope="col">Task</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+
+
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--============================ End Add Organizer ====================================-->
+ </ui:repeat>
+	</ui:define>
+</ui:composition>
