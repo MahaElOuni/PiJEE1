@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.DataModel;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -257,4 +258,33 @@ public class FormBean implements Serializable {
 	public void setFormService(FormService formService) {
 		this.formService = formService;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private PaginationHelper pagination;
+	private int selectedItemIndex;
+	private DataModel dtmdl = null;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
