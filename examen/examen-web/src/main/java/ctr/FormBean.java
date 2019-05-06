@@ -2,10 +2,12 @@ package ctr;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.DataModel;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -64,9 +66,11 @@ public class FormBean implements Serializable {
 		this.part = part;
 	}
 
-	ArrayList<Object> listdata= new ArrayList<Object>();
 	@EJB
 	FormService formService;
+	
+	
+	
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -246,14 +250,7 @@ public class FormBean implements Serializable {
 		this.methodeDePayemment = methodeDePayemment;
 	}
 
-	public ArrayList<Object> getListdata() {
-		return listdata;
-	}
-
-	public void setListdata(ArrayList<Object> listdata) {
-		this.listdata = listdata;
-	}
-
+	
 	public FormService getFormService() {
 		return formService;
 	}
@@ -261,4 +258,33 @@ public class FormBean implements Serializable {
 	public void setFormService(FormService formService) {
 		this.formService = formService;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private PaginationHelper pagination;
+	private int selectedItemIndex;
+	private DataModel dtmdl = null;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

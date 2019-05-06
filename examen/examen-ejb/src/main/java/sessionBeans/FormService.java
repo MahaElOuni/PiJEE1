@@ -1,10 +1,15 @@
 package sessionBeans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import persistence.Form;
@@ -33,7 +38,8 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 		String result= response.readEntity(String.class);
 		System.out.println(result);
 		return result;
-	}
+		
+			}
 
 	@Override
 	public String consommationGetByEvent() {
