@@ -2,14 +2,24 @@ package ctr;
 
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
@@ -17,8 +27,10 @@ import javax.ws.rs.core.MediaType;
 
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
+import org.primefaces.model.chart.PieChartModel;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import persistence.Report;
 import sessionBeans.EventService;
 
 
@@ -35,10 +47,14 @@ public class EventBean implements Serializable{
 	 private String description;
 	 private String address;
 	 private String organizedBy;
-	 ArrayList<Object> listdata = new ArrayList<Object>();     
+	 ArrayList<Object> listdata = new ArrayList<Object>();    
+	 
+	 static Report report1=new Report();
 	 @EJB
 	 EventService eventService;
+	 static Report report=new Report();
 	 
+	 //Get All Events
 	 @GET
 	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
 	 public ArrayList<Object> getAll(){
@@ -49,6 +65,7 @@ public class EventBean implements Serializable{
 	        
 	        if (array != null) { 
 	           for (int i=0;i<array.length();i++){ 
+	        	  
 	            listdata.add(array.get(i));
 	           
 	           } 
@@ -77,11 +94,13 @@ public class EventBean implements Serializable{
 
 	 //Create PDF
 	 
-	 public void createPDF(){
+	 public void createPDF(int eventId){
+		   report.setEventId(eventId);
+		   
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 		    ExternalContext externalContext = facesContext.getExternalContext();
 		    HttpSession session = (HttpSession) externalContext.getSession(true);
-		    String url = "http://localhost:18080/cours-ejb-jpa-web/report.xhtml;JSESSIONID="+session.getId()+"pdf=true";
+		    String url = "http://localhost:18080/examen-web/xhtml/reports.xhtml;JSESSIONID="+session.getId()+"pdf=true";
 		    try {
 		    ITextRenderer renderer = new ITextRenderer();
 		    renderer.setDocument(url);
@@ -98,8 +117,82 @@ public class EventBean implements Serializable{
 		       ex.printStackTrace();
 		    }
 		    facesContext.responseComplete();
+		    
 	}
-	public int getId() {
+	
+	 //getRepport
+	 @GET
+	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	 public Object getRepport(){
+		    String lr= eventService.consomationEvent(report.getEventId());	
+		    JSONObject array = new JSONObject(lr);
+	       
+	        return array;
+		 
+	 }
+	
+	 //Get Event
+	 
+	 
+	 public String getPageDetails(int eventId){
+		    
+	       report1.setEventId(eventId);
+	        return "/xhtml/eventDetails?faces-redirect=true";
+		 
+	 }
+	 
+	 //Get Event Details
+	 @GET
+	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	 public Object getEventDetail(){
+		    String lr= eventService.consomationEvent(report1.getEventId());	
+		    JSONObject array = new JSONObject(lr);
+	       
+	        return array;
+		 
+	 }
+	 
+	 // Get Event Scheduler
+	 
+	 @GET
+	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	 public ArrayList<Object> getEventScheduler(){
+		    String lr= eventService.consomationScheduler(report1.getEventId());	
+		    JSONArray array = new JSONArray(lr);
+	        ArrayList<Object> listdata = new ArrayList<Object>();  
+	        
+	        if (array != null) { 
+	           for (int i=0;i<array.length();i++){ 
+	            listdata.add(array.get(i));
+	           
+	           } 
+	        }
+	        return listdata;
+		 
+	 }
+	 
+	 public void sendMail(){
+		 Properties props = new Properties();
+		 Session session = Session.getDefaultInstance(props, null);
+
+		 try {
+		   Message msg = new MimeMessage(session);
+		   msg.setFrom(new InternetAddress("levio.lmp@gmail.com", "Example.com Admin"));
+		   msg.addRecipient(Message.RecipientType.TO,
+		                    new InternetAddress("maha.ouni995@gmail.com", "Mr. User"));
+		   msg.setSubject("Your Example.com account has been activated");
+		   msg.setText("This is a test");
+		   Transport.send(msg);
+		 } catch (AddressException e) {
+		   // ...
+		 } catch (MessagingException e) {
+		   // ...
+		 } catch (UnsupportedEncodingException e) {
+		   // ...
+		 }
+	 }
+	 
+	 public int getId() {
 		return id;
 	}
 
@@ -162,5 +255,7 @@ public class EventBean implements Serializable{
 	public void setOrganizedBy(String organizedBy) {
 		this.organizedBy = organizedBy;
 	}
-	 
+	
+	
+	
 }

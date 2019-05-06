@@ -26,7 +26,7 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 	@Override
 	public String consomation() {
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/Event/Get");
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetRecomByEvent");
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
@@ -34,8 +34,6 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		//response.close();
 		
 		return result;
-		
-		
 	}
 
 	@Override
@@ -46,6 +44,32 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
 		
+		//response.close();
+		
+		return result;
+	}
+
+	@Override
+	public String consomationEvent(int eventId) {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/Event/Get/"+eventId);
+		
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		//System.out.println(result);
+		//response.close();
+		
+		return result;
+	}
+
+	@Override
+	public String consomationScheduler(int eventId) {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetScheduler/"+eventId);
+		
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		//System.out.println(result);
 		//response.close();
 		
 		return result;

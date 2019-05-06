@@ -6,5 +6,7 @@ import javax.ejb.Local;
 public interface EventServiceLocal {
 	public String consomation();
 	public String consomationPresidentEvent();
+	public String consomationEvent(int eventId);
+	public String consomationScheduler(int eventId);
 
 }

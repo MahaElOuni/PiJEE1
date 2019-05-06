@@ -77,12 +77,14 @@
 
                     </div>
                     <ul class="blog_meta list">
-                    
-						<li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton class="genric-btn default-border circle arrow" action="${eventBean.}" onclick="this.form.target='_blank'">View Report<span class="lnr lnr-arrow-right"></span></h:commandButton></li>
+                        <h:form id="form">
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton action="#{eventBean.sendMail()}"  value="sendmail"><span class="lnr lnr-arrow-right"></span></h:commandButton></li>
+ 						<li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton action="#{eventBean.createPDF(event.get('EventId'))}"  onclick="this.form.target='_blank'" class="genric-btn default-border circle arrow" value="View Report"><span class="lnr lnr-arrow-right"></span></h:commandButton></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow">Edit Event<span class="lnr lnr-arrow-right"></span></a></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a class="genric-btn default-border circle arrow" >Add Organizer<span class="lnr lnr-arrow-right"></span></a></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow" >Participant List<span class="lnr lnr-arrow-right"></span></a></li>
                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconDelere.png" style="height:20px;width:20px" /><button class="genric-btn default-border circle arrow">Delete</button></li>
+                        </h:form>
                     </ul>
 
                 </div>
@@ -96,5 +98,6 @@
 
    
  </ui:repeat>
+ 
 	</ui:define>
 </ui:composition>
