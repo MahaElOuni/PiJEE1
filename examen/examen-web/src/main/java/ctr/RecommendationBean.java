@@ -16,7 +16,12 @@ import sessionBeans.RecommendationService;
 @SessionScoped
 public class RecommendationBean implements Serializable{
 	
-	 String EmailParticipent ;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	String EmailParticipent ;
 	
 	 ArrayList<Object> listdata = new ArrayList<Object>();   
 	 @EJB
