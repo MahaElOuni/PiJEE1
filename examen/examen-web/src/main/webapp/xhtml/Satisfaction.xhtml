@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/WEB-INF/template/template.xhtml">
+      
+      <ui:define name="title">
+		<title>Recommendation List</title>
+	</ui:define> 
+
+<ui:define name="content">
+	<!--================Welcome Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center" style="background-image:url(../../img/banner/home-banner.jpg)">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="banner_content text-center">
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+                    <a href="about-us.html">Events</a>
+                </div>
+                <br />
+                <h2>The events that may interests you</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<br />
+<div class="col-lg-4" style="background-color:transparent;margin-left:1050px">
+    <div class="blog_right_sidebar" style="background-color:transparent;border:thin">
+        <aside class="single_sidebar_widget search_widget" style="background-color:transparent">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" id="Search"></input>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                </span>
+            </div><!-- /input-group -->
+            <div class="br"></div>
+        </aside>
+    </div>
+</div>
+
+ <h:form>
+<ui:repeat value="${rewardBean.all}" var="reward" border="1">
+
+
+</ui:repeat>
+
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver1">
+                
+
+                <div class="wrap-table100-nextcols js-pscroll">
+                    <div class="table100-nextcols">
+                        <table>
+                            <thead>
+                                <tr class="row100 head">
+                                    <th class="cell100 column2">Price1</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <ui:repeat value="${satisfactionBean.all}" var="satisfaction" border="1">
+                                <tr>
+                                    <td>
+                                    <h:outputText value="${satisfaction.get('status')}" />
+                                      
+                                    </td>
+                              
+                                    
+                                </tr>
+                              </ui:repeat>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</h:form>
+	</ui:define>
+	
+</ui:composition>
