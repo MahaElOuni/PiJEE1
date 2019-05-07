@@ -61,7 +61,10 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 			WebTarget target = cl.target("http://localhost:9233/api"); 
 			WebTarget hello = target.path("FormAPIController/Get/"+id);     	
 	    	Response res=(Response) hello.request().get();
-	    	Form condi = res.readEntity(Form.class);
+	    	
+	    	String s = res.readEntity(String.class);
+	    	Form condi = new Form();
+	    	
 			 
 			return condi;
 	    }

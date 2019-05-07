@@ -2,10 +2,14 @@ package persistence;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Form {
 	
+	
+	@JsonProperty("$id")
+	private String id;
 	@JsonProperty("FormId")
 	private int formId;
 	@JsonProperty("FormDate")
@@ -170,6 +174,13 @@ public class Form {
 	}
 	public Form() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	@Override
 	public String toString() {
