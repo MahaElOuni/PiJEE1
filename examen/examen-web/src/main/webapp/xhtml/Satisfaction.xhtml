@@ -43,7 +43,7 @@
 </div>
 
  <h:form>
-<ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
+<ui:repeat value="${rewardBean.all}" var="reward" border="1">
 
 
 </ui:repeat>
@@ -53,48 +53,25 @@
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100 ver1">
-                <div class="table100-firstcol">
-                    <table>
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="cell100 column1">Email's Participant</th>
-                            </tr>
-                        </thead>
-                        <tbody style="margin-left:50px">
-                            <ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
-                                <tr style="margin-left:100px">
-
-                                    <td style="margin-left:100px">
-                                       <h:outputText value="${recommendation.get('EmailParticipent')}" />
-                                    </td>
-                                </tr>
-                             </ui:repeat>
-                            </tbody>
-                    </table>
-                </div>
+                
 
                 <div class="wrap-table100-nextcols js-pscroll">
                     <div class="table100-nextcols">
                         <table>
                             <thead>
                                 <tr class="row100 head">
-                                    <th class="cell100 column2">First Name</th>
-                                    <th class="cell100 column3">Last Name</th>
+                                    <th class="cell100 column2">Price1</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                               <ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
+                               <ui:repeat value="${satisfactionBean.all}" var="satisfaction" border="1">
                                 <tr>
                                     <td>
-                                    <h:outputText value="${recommendation.get('Nom')}" />
+                                    <h:outputText value="${satisfaction.get('status')}" />
                                       
                                     </td>
-                                    <td>
-                                    <h:outputText value="${recommendation.get('Prenom')}" />
-                                      
-                                    </td>
-
+                              
                                     
                                 </tr>
                               </ui:repeat>

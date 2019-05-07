@@ -1,6 +1,8 @@
 package ctr;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -9,29 +11,28 @@ import javax.ws.rs.core.MediaType;
 
 import org.primefaces.json.JSONArray;
 
-import sessionBeans.RecommendationService;
+import sessionBeans.SatisfactionService;
 
 
-@ManagedBean(name = "recommendationBean")
+@ManagedBean(name = "satisfactionBean")
 @SessionScoped
-public class RecommendationBean implements Serializable{
-	
-	 /**
+public class SatisfactionBean implements Serializable {
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	String EmailParticipent ;
 	
-	 ArrayList<Object> listdata = new ArrayList<Object>();   
+	ArrayList<Object> listdata = new ArrayList<Object>();   
 	 @EJB
-	 RecommendationService recommendationservice;
+	 SatisfactionService satisfactionservice;
 	 
 	 @GET
 	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
 	 public ArrayList<Object> getAll(){
 		
-			String lr= recommendationservice.consomation();		       
+			String lr=  satisfactionservice.consomation();		       
 	        JSONArray array = new JSONArray(lr);
 	        ArrayList<Object> listdata = new ArrayList<Object>();  
 	        
@@ -46,17 +47,6 @@ public class RecommendationBean implements Serializable{
 	        return listdata;
 			
 		}
-
-	public String getEmailParticipent() {
-		return EmailParticipent;
-	}
-
-	public void setEmailParticipent(String emailParticipent) {
-		EmailParticipent = emailParticipent;
-	}
-
 	
-	 
-	 
-
+	
 }

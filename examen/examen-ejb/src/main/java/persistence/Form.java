@@ -1,81 +1,48 @@
 package persistence;
 
+import java.util.Date;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Form {
 	
-	@JsonProperty("formId")
+	@JsonProperty("FormId")
 	private int formId;
-	@JsonProperty("formDate")
-	private String formDate;
-	@JsonProperty("pseudo")
+	@JsonProperty("FormDate")
+	private Date formDate;
+	@JsonProperty("Pseudo")
 	private String pseudo;
 	@JsonProperty("photos")
 	private String photos;
-	@JsonProperty("cin")
-	private String cin;
-	@JsonProperty("sex")
-	private String sex;
-	@JsonProperty("age")
+	@JsonProperty("CIN")
+	private int cin;
+	@JsonProperty("Sex")
+	private Sex sex;
+	@JsonProperty("Age")
 	private int age;
-	@JsonProperty("profession")
+	@JsonProperty("Profession")
 	private String profession;
-	@JsonProperty("mail")
+	@JsonProperty("Mail")
 	private String mail;
-	@JsonProperty("countrie")
+	@JsonProperty("Countrie")
 	private String countrie;
-	@JsonProperty("address")
+	@JsonProperty("Address")
 	private String address;
-	public Form(String formDate, String pseudo, String photos, String cin, String sex, int age, String profession,
-			String mail, String countrie, String address, int eventId, String title, String methodeDePayemment,
-			String participant) {
-		super();
-		this.formDate = formDate;
-		this.pseudo = pseudo;
-		this.photos = photos;
-		this.cin = cin;
-		this.sex = sex;
-		this.age = age;
-		this.profession = profession;
-		this.mail = mail;
-		this.countrie = countrie;
-		this.address = address;
-		this.eventId = eventId;
-		this.title = title;
-		this.methodeDePayemment = methodeDePayemment;
-		this.participant = participant;
-	}
-	public Form(int formId, String formDate, String pseudo, String photos, String cin, String sex, int age,
-			String profession, String mail, String countrie, String address, int eventId, String title,
-			String methodeDePayemment, String participant) {
-		super();
-		this.formId = formId;
-		this.formDate = formDate;
-		this.pseudo = pseudo;
-		this.photos = photos;
-		this.cin = cin;
-		this.sex = sex;
-		this.age = age;
-		this.profession = profession;
-		this.mail = mail;
-		this.countrie = countrie;
-		this.address = address;
-		this.eventId = eventId;
-		this.title = title;
-		this.methodeDePayemment = methodeDePayemment;
-		this.participant = participant;
-	}
+	@JsonProperty("EventId")
+	private int eventId;
+	@JsonProperty("Title")
+	private String title;
+	@JsonProperty("MethodeDePayemment")
+	private MethodeDePayemment methodeDePayemment;
+	@JsonProperty("Participant")
+	private boolean participant;
+	
+	
 	public int getFormId() {
 		return formId;
 	}
 	public void setFormId(int formId) {
 		this.formId = formId;
-	}
-	public String getFormDate() {
-		return formDate;
-	}
-	public void setFormDate(String formDate) {
-		this.formDate = formDate;
 	}
 	public String getPseudo() {
 		return pseudo;
@@ -88,18 +55,6 @@ public class Form {
 	}
 	public void setPhotos(String photos) {
 		this.photos = photos;
-	}
-	public String getCin() {
-		return cin;
-	}
-	public void setCin(String cin) {
-		this.cin = cin;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 	public int getAge() {
 		return age;
@@ -143,28 +98,76 @@ public class Form {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getMethodeDePayemment() {
-		return methodeDePayemment;
-	}
-	public void setMethodeDePayemment(String methodeDePayemment) {
+	
+	public Form(Date formDate, String pseudo, String photos, int cin, Sex sex, int age, String profession, String mail,
+			String countrie, String address, int eventId, String title, MethodeDePayemment methodeDePayemment,
+			boolean participant) {
+		super();
+		this.formDate = formDate;
+		this.pseudo = pseudo;
+		this.photos = photos;
+		this.cin = cin;
+		this.sex = sex;
+		this.age = age;
+		this.profession = profession;
+		this.mail = mail;
+		this.countrie = countrie;
+		this.address = address;
+		this.eventId = eventId;
+		this.title = title;
 		this.methodeDePayemment = methodeDePayemment;
-	}
-	public String getParticipant() {
-		return participant;
-	}
-	public void setParticipant(String participant) {
 		this.participant = participant;
 	}
-	@JsonProperty("eventId")
-	private int eventId;
-	@JsonProperty("title")
-	private String title;
-	@JsonProperty("methodeDePayemment")
-	private String methodeDePayemment;
-	@JsonProperty("particiant")
-	private String participant;
-	
-
+	public Form(int formId, Date formDate, String pseudo, String photos, int cin, Sex sex, int age, String profession,
+			String mail, String countrie, String address, int eventId, String title,
+			MethodeDePayemment methodeDePayemment, boolean participant) {
+		super();
+		this.formId = formId;
+		this.formDate = formDate;
+		this.pseudo = pseudo;
+		this.photos = photos;
+		this.cin = cin;
+		this.sex = sex;
+		this.age = age;
+		this.profession = profession;
+		this.mail = mail;
+		this.countrie = countrie;
+		this.address = address;
+		this.eventId = eventId;
+		this.title = title;
+		this.methodeDePayemment = methodeDePayemment;
+		this.participant = participant;
+	}
+	public Date getFormDate() {
+		return formDate;
+	}
+	public void setFormDate(Date formDate) {
+		this.formDate = formDate;
+	}
+	public int getCin() {
+		return cin;
+	}
+	public void setCin(int cin) {
+		this.cin = cin;
+	}
+	public Sex getSex() {
+		return sex;
+	}
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+	public MethodeDePayemment getMethodeDePayemment() {
+		return methodeDePayemment;
+	}
+	public void setMethodeDePayemment(MethodeDePayemment methodeDePayemment) {
+		this.methodeDePayemment = methodeDePayemment;
+	}
+	public boolean isParticipant() {
+		return participant;
+	}
+	public void setParticipant(boolean participant) {
+		this.participant = participant;
+	}
 	public Form() {
 		// TODO Auto-generated constructor stub
 	}

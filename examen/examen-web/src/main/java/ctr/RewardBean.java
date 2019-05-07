@@ -1,9 +1,5 @@
 package ctr;
 
-
-
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,24 +11,30 @@ import javax.ws.rs.core.MediaType;
 
 import org.primefaces.json.JSONArray;
 
-import sessionBeans.RecommendationService;
+import sessionBeans.RewardService;
 
 
-@ManagedBean(name = "recommendationBean")
+@ManagedBean(name = "rewardBean")
 @SessionScoped
-public class Recommendation implements Serializable{
+
+public class RewardBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	
-	 String Email ;
 	
-	 ArrayList<Object> listdata = new ArrayList<Object>();   
+	ArrayList<Object> listdata = new ArrayList<Object>();   
 	 @EJB
-	 RecommendationService recommendationservice;
+	 RewardService rewardservice;
 	 
 	 @GET
 	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
 	 public ArrayList<Object> getAll(){
 		
-			String lr= recommendationservice.consomation();		       
+			String lr= rewardservice.consomation();		       
 	        JSONArray array = new JSONArray(lr);
 	        ArrayList<Object> listdata = new ArrayList<Object>();  
 	        
@@ -47,6 +49,6 @@ public class Recommendation implements Serializable{
 	        return listdata;
 			
 		}
-	 
 
+	
 }
