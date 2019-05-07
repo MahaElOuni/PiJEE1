@@ -14,5 +14,7 @@ public interface AdminServiceRemote {
 	public String getEtatByIdUser(int id);
 	public String getRoleByIdUser(int id);
 	public void changeState(int id,String state);
+	public String getAllUsers();
+	
 
 }

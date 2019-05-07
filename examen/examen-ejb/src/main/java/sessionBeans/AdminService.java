@@ -104,5 +104,13 @@ public class AdminService implements AdminServiceRemote, AdminServiceLocal {
         String s = target.request().get().readEntity(String.class);
         
 	}
-
+	@Override
+	public String getAllUsers() {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/AdminAPI/Get");
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		return result;
+		
+	}
 }

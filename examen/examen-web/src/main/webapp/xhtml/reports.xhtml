@@ -9,14 +9,37 @@
   		<title>Facelet Title</title>
   	</h:head>
     <h:body>
-         <h1> Hello from Facelets </h1>
-        
-         <h:dataTable value="${eventBean.repport}" var="event" border="1">
-         <h:column><f:facet name="header"><h:outputText value="Login" /></f:facet>
-
-         <h:outputText value="${event.get('Title')}" />
-         </h:column>
-         </h:dataTable>
+        <img src="../img/logo2.png" style="position: absolute; top: 0; left: 0;"  width="150" height="50"/>
+        <label style="position: absolute; top: 0; right: 0; text-align:right;"><span>"<h:outputLabel value="${eventBean.repport.get('Slogan')}" />"</span></label>
+       
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+         <h1 style="color: #6f42c1;text-align: center;"><span>Your Event "<h:outputLabel value="${eventBean.repport.get('Title')}" /></span>" Report </h1>
+         <br/>
+         <br/>
+      
+      <h4>From:</h4><h:outputLabel value="${eventBean.repport.get('Start')}" /><h4>To:</h4><h:outputLabel value="${eventBean.repport.get('End')}" />        
+       <br/>
      
+      <div style="float: left">
+          <br/>
+     	<img src="${facesContext.externalContext.requestContextPath}/img/${eventBean.repport.get('Photo')}" alt="post" style="height: 250px; width: 350px;margin-left: auto; margin-right: auto"  />
+     	</div>
+     	<div style="float: reight;size: 50"  >
+     	<br/>
+     	<textarea ><h:outputText value="${eventBean.repport.get('Description')}"></h:outputText></textarea>         
+     </div>
+     <div style="clear: left;"/>
+     <div>        
+      	<br/>
+      	<span style="color: #2c28b1">Place number: </span>
+      	<br/>
+      	<span style="color: #2c28b1">Participant number: </span>
+       	<br/>
+      	<span style="color: #2c28b1">Organizer number: </span>
+      </div>  
+     <p:graphicImage value="#{eventBean.likersNumber}" />
     </h:body>
 </html>
