@@ -23,10 +23,13 @@ public class SatisfactionBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	 int nbr = 9 ;
+	 int nbb = 9  ; 
 	
 	ArrayList<Object> listdata = new ArrayList<Object>();   
 	 @EJB
 	 SatisfactionService satisfactionservice;
+	 
 	 
 	 @GET
 	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)

@@ -98,13 +98,13 @@ public class FormBean implements Serializable {
 		setEventId(o.getEventId());
 		setTitle(o.getTitle());
 		setPseudo(o.getPseudo());
-		setCin(o.getCin());
+		//setCin(o.getCin());
 		setMail(o.getMail());
 		setAge(o.getAge());
 		setProfession(o.getProfession());
 		setCountrie(o.getCountrie());
 		setAddress(o.getAddress());
-		setParticipant(o.getParticipant());
+		//setParticipant(o.getParticipant());
 		
 		
 		
