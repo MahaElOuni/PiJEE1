@@ -8,5 +8,6 @@ public interface EventServiceLocal {
 	public String consomationPresidentEvent();
 	public String consomationEvent(int eventId);
 	public String consomationScheduler(int eventId);
+	public String consomationEventLikers(int eventId);
 
 }

@@ -1,13 +1,16 @@
 package ctr;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
-
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,12 +28,20 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
-import org.primefaces.model.chart.PieChartModel;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import persistence.Likers;
 import persistence.Report;
+import sessionBeans.AdminService;
 import sessionBeans.EventService;
 
 
@@ -47,12 +58,18 @@ public class EventBean implements Serializable{
 	 private String description;
 	 private String address;
 	 private String organizedBy;
+	
 	 ArrayList<Object> listdata = new ArrayList<Object>();    
 	 
 	 static Report report1=new Report();
+	 
+	 static Report report=new Report();
 	 @EJB
 	 EventService eventService;
-	 static Report report=new Report();
+	 
+	 @EJB
+	 AdminService adminService;
+	 
 	 
 	 //Get All Events
 	 @GET
@@ -130,7 +147,10 @@ public class EventBean implements Serializable{
 	        return array;
 		 
 	 }
+	 
 	
+	 
+	 
 	 //Get Event
 	 
 	 
@@ -192,6 +212,57 @@ public class EventBean implements Serializable{
 		 }
 	 }
 	 
+	
+	 public StreamedContent getLikersNumber(){
+		    int likes=0;
+		    int unLikes=0;
+		    int votes=0;
+		    int users=0;
+		    
+		    String lr= adminService.getAllUsers();		       
+		 	JSONArray array = new JSONArray(lr);
+		 	String likersList= eventService.consomationEventLikers(report.getEventId());		       
+		 	JSONArray arrayLikers = new JSONArray(likersList);
+		 	 if (arrayLikers != null) { 
+		 		for (int i=0;i<arrayLikers.length();i++){ 
+		 			JSONObject object = arrayLikers.getJSONObject(i);
+		 			if(object.getInt("status")==1){
+		 				unLikes=unLikes+1;
+		 			}else{
+		 				likes=likes+1;
+		 			}
+           
+		 		} 
+		 	}
+		 	 users=array.length();
+		 	 votes=likes+unLikes;
+		 	 DefaultPieDataset dataset = new DefaultPieDataset();
+		 	
+			dataset.setValue("Likes= "+likes, likes);
+			 dataset.setValue("UnLikes= "+unLikes, unLikes);
+			
+		 	
+			 StreamedContent chart = null;
+			 JFreeChart jfreechart = ChartFactory.createPieChart("Number Of Votes: "+votes, dataset, true, true, false);
+			 File chartFile1 = new File("dynamichart");
+			 try {
+				ChartUtilities.saveChartAsPNG(chartFile1, jfreechart, 375, 300);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+			 try {
+				chart = new DefaultStreamedContent(new FileInputStream(chartFile1),"image/png");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 	
+		 	
+		return chart ;
+		
+	 }
 	 public int getId() {
 		return id;
 	}
@@ -255,7 +326,38 @@ public class EventBean implements Serializable{
 	public void setOrganizedBy(String organizedBy) {
 		this.organizedBy = organizedBy;
 	}
+
+
+	public StreamedContent Bean(){
+		StreamedContent chart = null;
+	 JFreeChart jfreechart = ChartFactory.createPieChart("Cities",
+	createDataset(), true, true, false);
+	 File chartFile1 = new File("dynamichart");
+	 try {
+		ChartUtilities.saveChartAsPNG(chartFile1, jfreechart, 375, 300);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 
+	 try {
+		chart = new DefaultStreamedContent(new FileInputStream(chartFile1),"image/png");
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 return chart;
+	}
 	
-	
+	private PieDataset createDataset() {
+	 DefaultPieDataset dataset = new DefaultPieDataset();
+	 dataset.setValue("New York", new Double(45.0));
+	 dataset.setValue("London", new Double(15.0));
+	 dataset.setValue("Paris", new Double(25.2));
+	 dataset.setValue("Berlin", new Double(14.8));
+	 return dataset;
+	 }
+
+
 	
 }
