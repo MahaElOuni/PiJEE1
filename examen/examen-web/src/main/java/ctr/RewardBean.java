@@ -11,38 +11,44 @@ import javax.ws.rs.core.MediaType;
 
 import org.primefaces.json.JSONArray;
 
-import sessionBeans.BlogService;
+import sessionBeans.RewardService;
 
-@ManagedBean(name = "blogBean")
+
+@ManagedBean(name = "rewardBean")
 @SessionScoped
-public class BlogBean implements Serializable {
+
+public class RewardBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
+	
+	ArrayList<Object> listdata = new ArrayList<Object>();   
 	 @EJB
-	 BlogService blogService;
+	 RewardService rewardservice;
+	 
 	 @GET
 	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
 	 public ArrayList<Object> getAll(){
 		
-			String lr= blogService.consomation();		       
+			String lr= rewardservice.consomation();		       
 	        JSONArray array = new JSONArray(lr);
 	        ArrayList<Object> listdata = new ArrayList<Object>();  
 	        
 	        if (array != null) { 
 	           for (int i=0;i<array.length();i++){ 
-	        	  
 	            listdata.add(array.get(i));
 	           
 	           } 
 	        }
+	        
+		
 	        return listdata;
+			
 		}
-	
-	 public String getPageDetails(int BlogId){
-		    
-	     //  report1.setEventId(BlogId);
-	        return "/xhtml/blogDetails?faces-redirect=true";
-		 
-	 }
-	 
-	 
 
+	
 }

@@ -43,7 +43,7 @@
 </div>
 
  <h:form>
-<ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
+<ui:repeat value="${rewardBean.all}" var="reward" border="1">
 
 
 </ui:repeat>
@@ -57,7 +57,7 @@
                     <table>
                         <thead>
                             <tr class="row100 head">
-                                <th class="cell100 column1">Email's Participant</th>
+                                <th class="cell100 column1">Titre</th>
                             </tr>
                         </thead>
                         <tbody style="margin-left:50px">
@@ -65,7 +65,7 @@
                                 <tr style="margin-left:100px">
 
                                     <td style="margin-left:100px">
-                                       <h:outputText value="${recommendation.get('EmailParticipent')}" />
+                                       <h:outputText value="${reward.get('titre')}" />
                                     </td>
                                 </tr>
                              </ui:repeat>
@@ -78,20 +78,25 @@
                         <table>
                             <thead>
                                 <tr class="row100 head">
-                                    <th class="cell100 column2">First Name</th>
-                                    <th class="cell100 column3">Last Name</th>
+                                    <th class="cell100 column2">Price1</th>
+                                    <th class="cell100 column3">Price2</th>
+                                    <th class="cell100 column3">Price3</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                               <ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
+                               <ui:repeat value="${rewardBean.all}" var="reward" border="1">
                                 <tr>
                                     <td>
-                                    <h:outputText value="${recommendation.get('Nom')}" />
+                                    <h:outputText value="${reward.get('Price1')}" />
                                       
                                     </td>
                                     <td>
-                                    <h:outputText value="${recommendation.get('Prenom')}" />
+                                    <h:outputText value="${reward.get('Price2')}" />
+                                      
+                                    </td>
+                                    <td>
+                                    <h:outputText value="${reward.get('Price3')}" />
                                       
                                     </td>
 
