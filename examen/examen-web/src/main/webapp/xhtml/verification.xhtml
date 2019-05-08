@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+       template="/WEB-INF/template/template0.xhtml"> 
+
+ <ui:define name="title">
+		<title>Verification Login </title>
+	</ui:define> 
+	<ui:define name="content">
+	<!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<div class="page_link">
+							<a href="${facesContext.externalContext.requestContextPath}/xhtml/index.xhtml">Home</a>
+							<a href="${facesContext.externalContext.requestContextPath}/xhtml/login.xhtml">Verification Login</a>
+						</div>
+						<h2>Use QR code</h2>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        <br></br>
+        <h:form class="text-center" id="form">
+        <p>Hello dear customer if you want to continue your login, just install the application <strong>"Barcode Scanner"</strong> to know the keyword before entering</p>
+        <center> <p:barcode value="WeLcOme" type="qr" /> </center>
+        <div class="md-form">
+        <h:inputText class="form-control" value="#{loginbean.code}" placeholder = "Enter codeshot " />
+        </div>
+        <br></br>
+        <h:commandButton class="main_btn" id="btn" value="Continue" action="#{loginbean.verification()}" />
+        <h:message for="btn"/>
+		</h:form>
+	
+	</ui:define>
+	
+</ui:composition >

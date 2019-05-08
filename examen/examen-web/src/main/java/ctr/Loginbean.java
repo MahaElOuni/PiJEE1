@@ -20,6 +20,7 @@ public class Loginbean implements Serializable {
 	private Boolean loggedIn;
 	private String role;
 	private String etat;
+	private String code;
 	public static int idUser;
 	@EJB
 	LoginServiceRemote loginService;
@@ -52,7 +53,7 @@ public class Loginbean implements Serializable {
 					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("    Your request is rejected"));
 				}
 				else{
-					navigateTo = "/xhtml/home.xhtml"; 
+					navigateTo = "/xhtml/verification.xhtml"; 
 					loggedIn = true; 	
 				}
 			}			
@@ -62,6 +63,19 @@ public class Loginbean implements Serializable {
 		}
 	return navigateTo; 
 	
+	}
+	public String verification(){
+		String navigate = "null";
+		if(code.equals("WeLcOme")){
+			navigate = "/xhtml/home.xhtml"; 
+			loggedIn = true; 
+			
+		}
+		else{
+			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Enter a correct code"));
+		}
+		return navigate;
+		
 	}
 	
 	public String doLogout() {
@@ -115,6 +129,12 @@ public class Loginbean implements Serializable {
 
 	public void setEtat(String etat) {
 		this.etat = etat;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	
