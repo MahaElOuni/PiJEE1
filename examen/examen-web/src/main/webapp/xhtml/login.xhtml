@@ -63,7 +63,18 @@
         				    
         				    <hr></hr>
         				    <div class="col-md-12">
-        				     <!-- Facebook Login -->       				    
+        				     
+								
+							 <!-- Google Login -->    	
+ 							<html>
+								<head>
+  									 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+   								   <script src="https://apis.google.com/js/platform.js"></script>
+ 									 <meta name="google-signin-client_id" content="523629142846-tt32ne1dhrvsfrpjjt6pu4jcsmet8nt1.apps.googleusercontent.com" ></meta>
+								</head>
+								
+								<body>
+									<!-- Facebook Login -->       				    
                             	<script>
   									// This is called with the results from from FB.getLoginStatus().
   										function statusChangeCallback(response) {
@@ -104,19 +115,13 @@
        											 'Thanks for logging in, ' + response.name +'<a href="${facesContext.externalContext.requestContextPath}/xhtml/home.xhtml">Continue</a>'+ '!'; });}
 							</script>
  								<!--Below we include the Login Button social plugin. This button uses the JavaScript SDK to present a graphical Login button that triggers the FB.login() function when clicked.-->
-								<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
-								<div id="status"></div>
+								<div class="col-md-12">
 								
-							 <!-- Google Login -->    	
- 							<html>
-								<head>
-  									 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
-   								   <script src="https://apis.google.com/js/platform.js"></script>
- 									 <meta name="google-signin-client_id" content="523629142846-tt32ne1dhrvsfrpjjt6pu4jcsmet8nt1.apps.googleusercontent.com" ></meta>
-								</head>
 								
-								<body>
-   								    <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+								 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+								 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
+								 </div>
+								 <div id="status"></div>
       									<img id="myImg" /><br></br>
       									<p id="name"></p>
      								 <div id="status"></div>
@@ -133,6 +138,8 @@
                                                      document.getElementById("status").innerHTML = 'Thanks for logging in, ' 
                                                          + response.name +'<a href="${facesContext.externalContext.requestContextPath}/xhtml/home.xhtml">Continue</a>'+ '!';}
    									</script>
+								
+
 								</body>
 							</html>		    			
         				    </div>	
