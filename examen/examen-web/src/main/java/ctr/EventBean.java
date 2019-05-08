@@ -1,33 +1,22 @@
 package ctr;
 
-import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Properties;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -38,8 +27,7 @@ import org.primefaces.json.JSONObject;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.xhtmlrenderer.pdf.ITextRenderer;
-
-import persistence.Likers;
+import persistence.Organizer;
 import persistence.Report;
 import sessionBeans.AdminService;
 import sessionBeans.EventService;
@@ -96,7 +84,7 @@ public class EventBean implements Serializable{
 	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
 	 public ArrayList<Object> getEventsPresident(){
 		
-			String lr= eventService.consomationPresidentEvent();		       
+			String lr= eventService.consomationPresidentEvent(Loginbean.idUser);		       
 	        JSONArray array = new JSONArray(lr);
 	        ArrayList<Object> listdata = new ArrayList<Object>();  
 	        
@@ -191,7 +179,7 @@ public class EventBean implements Serializable{
 		 
 	 }
 	 
-	 public void sendMail(){
+	/* public void sendMail(){
 		 Properties props = new Properties();
 		 Session session = Session.getDefaultInstance(props, null);
 
@@ -210,7 +198,7 @@ public class EventBean implements Serializable{
 		 } catch (UnsupportedEncodingException e) {
 		   // ...
 		 }
-	 }
+	 }*/
 	 
 	
 	 public StreamedContent getLikersNumber(){
@@ -263,6 +251,42 @@ public class EventBean implements Serializable{
 		return chart ;
 		
 	 }
+	 
+	 
+	//Get Participant number
+		
+	public int getParticipantNumber(){
+	     int number= eventService.consomationParticipantNumber(report.getEventId());	
+		return number;
+			 
+	}
+		 
+	//Get Organizer and Tasks
+	
+	@GET
+	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	 public ArrayList<Organizer> getOrganizers(){
+		ArrayList<Organizer> listOrganizer=new ArrayList<Organizer>();
+		    String lr= eventService.consomationOrganizerTasks(report.getEventId());	
+		    JSONArray array = new JSONArray(lr);
+	       
+	        
+	        if (array != null) { 
+	           for (int i=0;i<array.length();i++){ 
+	        	   JSONObject object = array.getJSONObject(i);
+	        	   Organizer organizer=new Organizer();
+	        	   organizer.setEmail(eventService.consomationOrganizerEmail(object.getInt("UserId")));
+	               organizer.setTaskTitle(object.getString("TaskTitle"));
+	               listOrganizer.add(organizer);
+	               
+	           } 
+	        }
+	        return listOrganizer;
+		 
+	 }
+	public int getNumberOrganizer(){
+		return getOrganizers().size();
+	}
 	 public int getId() {
 		return id;
 	}
@@ -359,5 +383,43 @@ public class EventBean implements Serializable{
 	 }
 
 
-	
+	/*public void sendEmails(){
+		 try{
+	            String host ="smtp.gmail.com" ;
+	            String user = "maha.elouni@esprit.tn";
+	            String pass = "12812152";
+	            String to = "maha.ouni995@gmail.com";
+	            String from = "sender email";
+	            String subject = "This is confirmation number for your expertprogramming account. Please insert this number to activate your account.";
+	            String messageText = "Your Is Test Email :";
+	            boolean sessionDebug = false;
+
+	            Properties props = System.getProperties();
+
+	            props.put("mail.smtp.starttls.enable", "true");
+	            props.put("mail.smtp.host", host);
+	            props.put("mail.smtp.port", "587");
+	            props.put("mail.smtp.auth", "true");
+	            props.put("mail.smtp.starttls.required", "true");
+
+	            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+	            Session mailSession = Session.getDefaultInstance(props, null);
+	            mailSession.setDebug(sessionDebug);
+	            Message msg = new MimeMessage(mailSession);
+	            msg.setFrom(new InternetAddress(from));
+	            InternetAddress[] address = {new InternetAddress(to)};
+	            msg.setRecipients(Message.RecipientType.TO, address);
+	            msg.setSubject(subject); msg.setSentDate(new Date());
+	            msg.setText(messageText);
+
+	           Transport transport=mailSession.getTransport("smtp");
+	           transport.connect(host, user, pass);
+	           transport.sendMessage(msg, msg.getAllRecipients());
+	           transport.close();
+	           System.out.println("message send successfully");
+	        }catch(Exception ex)
+	        {
+	            System.out.println(ex);
+	        }
+	}*/
 }

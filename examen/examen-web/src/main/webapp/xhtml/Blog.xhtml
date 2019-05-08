@@ -92,13 +92,14 @@
 							<p>
 								<h:outputText value="${blog.get('Contenu')}" />
 							</p>
+							
+
+						</div>
+						<h:form id="form">
 							<h:commandButton
 								action="#{blogBean.getPageDetails(blog.get('BlogId'))}"
-								value="${blog.get('Type')}" />
-							
-						</div>
-
-
+								value="View Details" />
+						</h:form>
 					</div>
 				</div>
 				</article>

@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -42,12 +43,16 @@
     </div>
 </div>
 
+
+
+
  <h:form>
 <ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
 
 
 </ui:repeat>
 
+ 
 
 <div class="limiter">
     <div class="container-table100">
@@ -58,6 +63,8 @@
                         <thead>
                             <tr class="row100 head">
                                 <th class="cell100 column1">Email's Participant</th>
+                                 <th class="cell100 column2">First Name</th>
+                                    <th class="cell100 column3">Last Name</th>
                             </tr>
                         </thead>
                         <tbody style="margin-left:50px">
@@ -67,25 +74,6 @@
                                     <td style="margin-left:100px">
                                        <h:outputText value="${recommendation.get('EmailParticipent')}" />
                                     </td>
-                                </tr>
-                             </ui:repeat>
-                            </tbody>
-                    </table>
-                </div>
-
-                <div class="wrap-table100-nextcols js-pscroll">
-                    <div class="table100-nextcols">
-                        <table>
-                            <thead>
-                                <tr class="row100 head">
-                                    <th class="cell100 column2">First Name</th>
-                                    <th class="cell100 column3">Last Name</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                               <ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
-                                <tr>
                                     <td>
                                     <h:outputText value="${recommendation.get('Nom')}" />
                                       
@@ -94,18 +82,18 @@
                                     <h:outputText value="${recommendation.get('Prenom')}" />
                                       
                                     </td>
-
-                                    
                                 </tr>
-                              </ui:repeat>
-                                </tbody>
-                        </table>
-                    </div>
+                             </ui:repeat>
+                            </tbody>
+                    </table>
                 </div>
+
+               
             </div>
         </div>
     </div>
 </div>
+
 </h:form>
 	</ui:define>
 	

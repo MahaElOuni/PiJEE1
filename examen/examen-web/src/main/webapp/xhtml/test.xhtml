@@ -8,22 +8,8 @@
 <title>Notification Bar</title>  
 </h:head>  
 <h:body>  
-<p:notificationBar position="top" effect="fade" styleClass="top" widgetVar="notify">  
-<h:outputText value="This is a Primefaces notification." style="font-size:36px;" />  
-</p:notificationBar>  
-<p:graphicImage name="images/primefaces-logo.jpeg" /><br/><br/>  
-<p:commandButton value="Click for notification" onclick="PF('notify').show()" type="button" icon="ui-icon-arrow-1-s"/> 
-<br/>
-<br/>
-<br/>
-<br/>
 
-<p:commandButton value="Click for notification" onclick="PF('notify').hide()" type="button" icon="ui-icon-arrow-1-s" class="notification">
- <span class="badge">3</span>
- </p:commandButton> 
-
-<h:outputLink value="#" onclick="PF('nv').show()">Show</h:outputLink>
-<h:outputLink value="#" onclick="PF('nv').hide()">Hide</h:outputLink>
+      <h:commandButton action="#{eventBean.sendEmails()}"  value="sendmail"></h:commandButton>
  
 </h:body>  
 </html> 

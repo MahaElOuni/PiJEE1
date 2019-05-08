@@ -45,9 +45,9 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 	}
 
 	@Override
-	public String consomationPresidentEvent() {
+	public String consomationPresidentEvent(int id) {
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/Event/GetEventPresident");
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetEventPresident/"+id);
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
@@ -105,6 +105,45 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
              
             } 
          }
+		
+		return result;
+	}
+
+	@Override
+	public int consomationParticipantNumber(int eventId) {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetParticipantNumber/"+eventId);
+		
+		Response response=target.request().get();
+		int result=response.readEntity(int.class);
+		
+		//response.close();
+		
+		return result;
+	}
+
+	@Override
+	public String consomationOrganizerTasks(int eventId) {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetOrganizerTasks/"+eventId);
+		
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		
+		//response.close();
+		
+		return result;
+	}
+
+	@Override
+	public String consomationOrganizerEmail(int organizerID) {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetOrganizerEmail/"+organizerID);
+		
+		Response response=target.request().get();
+		String result=response.readEntity(String.class);
+		
+		//response.close();
 		
 		return result;
 	}
