@@ -71,10 +71,33 @@
                                     <h:outputText value="${satisfaction.get('status')}" />
                                       
                                     </td>
+                                    </tr>
+                                    </ui:repeat>
+                               <div class="row">
+
+                                    <canvas id="pie-chart" width="80" height="45"></canvas>
+                                    <script>
+                                        new Chart(document.getElementById("pie-chart"), {
+                                            type: 'pie',
+                                            data: {
+                                                labels: ["Accepted", "Refused"],
+                                                datasets: [{
+                                                    label: "treaitment",
+                                                    backgroundColor: ["#3e95cd", "#8e5ea2"],
+                                                    data:[#{SatisfactionBean.nbb}${5}]
+                                                }]
+                                            },
+                                            options: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Request Traitment'
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                </div>
+	                            
                               
-                                    
-                                </tr>
-                              </ui:repeat>
                                 </tbody>
                         </table>
                     </div>

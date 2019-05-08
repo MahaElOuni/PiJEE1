@@ -35,6 +35,14 @@ public class BlogBean implements Serializable {
 	        }
 	        return listdata;
 		}
+	
+	 public String getPageDetails(int BlogId){
+		    
+	     //  report1.setEventId(BlogId);
+	        return "/xhtml/blogDetails?faces-redirect=true";
+		 
+	 }
+	 
 	 
 
 }

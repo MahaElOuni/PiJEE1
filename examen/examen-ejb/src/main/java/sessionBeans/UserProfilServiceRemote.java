@@ -2,7 +2,9 @@ package sessionBeans;
 
 import javax.ejb.Remote;
 
+import persistence.User;
+
 @Remote
 public interface UserProfilServiceRemote {
-	public void getProfilUserById(int id);
+	public User getProfilUserById(int id);
 }
