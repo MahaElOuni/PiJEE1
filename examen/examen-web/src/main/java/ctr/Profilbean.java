@@ -17,8 +17,9 @@ public class Profilbean implements Serializable {
 	UserProfilServiceRemote userprofile;
 	private User users;
 	public User Detail( int id){
-		
+		 System.out.println("emchii");
 		 return userprofile.getProfilUserById(id);
+		
 		
 		
 	}
