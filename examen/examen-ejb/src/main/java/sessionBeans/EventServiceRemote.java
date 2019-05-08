@@ -12,5 +12,8 @@ public interface EventServiceRemote {
 	public int consomationParticipantNumber(int eventId);
 	public String consomationOrganizerTasks(int eventId);
 	public String consomationOrganizerEmail(int organizerID);
+	public void deleteEvent(int eventID);
+	public String  addOrganizer(String organizer);
+	public int getOrganizerId(String email);
 
 }
