@@ -6,5 +6,5 @@ import persistence.User;
 
 @Remote
 public interface UserProfilServiceRemote {
-	public User getProfilUserById(int id);
+	public String getProfilUserById(int id);
 }

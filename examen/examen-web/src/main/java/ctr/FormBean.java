@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.primefaces.event.SelectEvent;
 import org.primefaces.json.JSONArray;
 import org.primefaces.json.JSONObject;
 
@@ -132,43 +135,21 @@ public class FormBean implements Serializable {
 		return "/xhtml/DetailsForms.xhtml";
 	}
 
-
-
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Object> getByEventId(int id){
-		String lr= formService.consommationGetByEvent();
-		JSONArray array= new JSONArray(lr);
-		ArrayList<Object> listdata=new ArrayList<Object>();
-		
-		if(array!= null){
-			for(int i=0; i<array.length(); i++){
-				
-				if(array.getString(13)=="0")
-					part="Waiting";
-					else
-						part="Participant";
-					
-				listdata.add(array.get(i));
-
-				
-			}
-		}
-		return listdata;
-	}
+	
 
 	
 	
+	
+	
+	
+	
+
 	public int getFormId() {
 		return formId;
 	}
 
 	public void setFormId(int formId) {
 		this.formId = formId;
-	}
-
-	public String getFormDate() {
-		return formDate;
 	}
 
 	public void setFormDate(String formDate) {

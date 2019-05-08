@@ -13,15 +13,15 @@ public class Form {
 	@JsonProperty("FormId")
 	private int formId;
 	@JsonProperty("FormDate")
-	private Date formDate;
+	private String formDate;
 	@JsonProperty("Pseudo")
 	private String pseudo;
 	@JsonProperty("photos")
 	private String photos;
 	@JsonProperty("CIN")
-	private int cin;
+	private String cin;
 	@JsonProperty("Sex")
-	private Sex sex;
+	private int sex;
 	@JsonProperty("Age")
 	private int age;
 	@JsonProperty("Profession")
@@ -37,7 +37,7 @@ public class Form {
 	@JsonProperty("Title")
 	private String title;
 	@JsonProperty("MethodeDePayemment")
-	private MethodeDePayemment methodeDePayemment;
+	private int methodeDePayemment;
 	@JsonProperty("Participant")
 	private boolean participant;
 	
@@ -103,8 +103,8 @@ public class Form {
 		this.title = title;
 	}
 	
-	public Form(Date formDate, String pseudo, String photos, int cin, Sex sex, int age, String profession, String mail,
-			String countrie, String address, int eventId, String title, MethodeDePayemment methodeDePayemment,
+	public Form(String formDate, String pseudo, String photos, String cin, int sex, int age, String profession, String mail,
+			String countrie, String address, int eventId, String title, int methodeDePayemment,
 			boolean participant) {
 		super();
 		this.formDate = formDate;
@@ -122,9 +122,9 @@ public class Form {
 		this.methodeDePayemment = methodeDePayemment;
 		this.participant = participant;
 	}
-	public Form(int formId, Date formDate, String pseudo, String photos, int cin, Sex sex, int age, String profession,
+	public Form(int formId, String formDate, String pseudo, String photos, String cin, int sex, int age, String profession,
 			String mail, String countrie, String address, int eventId, String title,
-			MethodeDePayemment methodeDePayemment, boolean participant) {
+			int methodeDePayemment, boolean participant) {
 		super();
 		this.formId = formId;
 		this.formDate = formDate;
@@ -142,28 +142,28 @@ public class Form {
 		this.methodeDePayemment = methodeDePayemment;
 		this.participant = participant;
 	}
-	public Date getFormDate() {
+	public String getFormDate() {
 		return formDate;
 	}
-	public void setFormDate(Date formDate) {
+	public void setFormDate(String formDate) {
 		this.formDate = formDate;
 	}
-	public int getCin() {
+	public String getCin() {
 		return cin;
 	}
-	public void setCin(int cin) {
+	public void setCin(String cin) {
 		this.cin = cin;
 	}
-	public Sex getSex() {
+	public int getSex() {
 		return sex;
 	}
-	public void setSex(Sex sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
-	public MethodeDePayemment getMethodeDePayemment() {
+	public int getMethodeDePayemment() {
 		return methodeDePayemment;
 	}
-	public void setMethodeDePayemment(MethodeDePayemment methodeDePayemment) {
+	public void setMethodeDePayemment(int methodeDePayemment) {
 		this.methodeDePayemment = methodeDePayemment;
 	}
 	public boolean isParticipant() {

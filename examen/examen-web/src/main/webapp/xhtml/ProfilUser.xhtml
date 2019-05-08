@@ -6,7 +6,7 @@
        template="/WEB-INF/template/template.xhtml"> 
 
 <ui:define name="title">
-		<title>About</title>
+		<title>About You</title>
 	</ui:define>
 	
 		<ui:define name="content">
@@ -18,56 +18,95 @@
 					<div class="banner_content text-center">
 						<div class="page_link">
 							<a href="${facesContext.externalContext.requestContextPath}/xhtml/index.xhtml">Home</a>
-							<a href="${facesContext.externalContext.requestContextPath}/xhtml/about.xhtml">About</a>
+							<a href="${facesContext.externalContext.requestContextPath}/xhtml/about.xhtml">About You</a>
 						</div>
-						<h2>About Event</h2>
+						<h2>Your Profil</h2>
 					</div>
 				</div>
             </div>
         </section>
+        
         <!--================End Home Banner Area =================-->
         
         
-<h:form id="form">
-	<h:dataTable value="#{profilbean.users}" var="user" border="1" class="table table-striped" >
-	
-	
-	<h:column scope="col">	
-		<f:facet name="header">
-			<h:outputText value="First Name" />
-		</f:facet>
-		<h:outputText value="#{user.firstName}" />
-	</h:column>
-	
-	<h:column scope="col">	
-		<f:facet name="header">
-			<h:outputText value="Last Name" />
-		</f:facet>
-		<h:outputText value="#{user.lastName}" />
-	</h:column>
-		
-	<h:column scope="col">	
-		<f:facet name="header">
-			<h:outputText value="Email" />
-		</f:facet>
-		<h:outputText value="#{user.email}" />
-	</h:column>
-	
-	<h:column scope="col">	
-		<f:facet name="header">
-			<h:outputText value="Post" />
-		</f:facet>
-		<h:outputText value="#{user.role}" />
-	</h:column>
-	
-	
-	
-		
+<h2>My Account</h2>
+<hr />
+<div class="container-fluid">
+    <section class="section" style="display: flex;justify-content: center; align-items: center;">
+        <div class="row">
+            <div class="col-lg-12 mb-r">
+                <div class="card card-cascade narrower" style="height:300px;width:200px">
+                    <div class="view gardient-card-header info-color ">
+                        <h4 class="mb-0" style="align-content:center">Account's Photo</h4>
+                    </div>
+                    <div class="card-body text-center mb-4" style="height:10px">
+                        <img src="${facesContext.externalContext.requestContextPath}/img/Upload/${profilbean.Detail().get('Photo')}" style="height:250px; width:150px"/>
+                    </div>
+                </div>
 
-	
-	</h:dataTable>
-	</h:form>
-	
+            </div>
+
+        </div>
+        <div class="col-lg-6 mb-r">
+            <div class="card card-cascade narrower">
+                <div class="view gardient-card-header info-color">
+                    <h4 class="mb-0"> My Account informations</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h:form style="align-items:flex-end">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="card-title"><strong><h:outputText value="#{profilbean.Detail().get('FName')}" /><h:outputText value="#{profilbean.Detail().get('LName')}" /></strong></h1>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"> <strong style="color:blueviolet">Email: </strong> <h:outputText value="#{profilbean.Detail().get('Email')}" /></h4>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"> <strong style="color:blueviolet">Phone Number: </strong> <h:outputText value="#{profilbean.Detail().get('PhoneNumber')}" /></h4>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"> <strong style="color:blueviolet">CIN: </strong>  <h:outputText value="#{profilbean.Detail().get('CIN')}" /></h4>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"> <strong style="color:blueviolet">Address: </strong> <h:outputText value="#{profilbean.Detail().get('StreetName')}" /></h4>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"> <strong style="color:blueviolet">Post: </strong><h:outputText value="#{profilbean.Detail().get('Role')}" /></h4>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="mb-0"> <strong style="color:blueviolet">Birthday : </strong><h:outputText value="#{profilbean.Detail().get('BirthDate')}" /></h4>
+                            </div>
+                        </div>
+                        <br />
+
+                    </h:form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+<br />	
         
        </ui:define>
 </ui:composition>

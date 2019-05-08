@@ -3,6 +3,8 @@ package sessionBeans;
 public interface SatisfactionServiceLocal {
 
 	public String consomation();
-	public int EventLikers();
+	public String EventLikers(int eventId);
+	
+	
 	
 }

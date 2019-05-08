@@ -8,7 +8,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
 
 import org.primefaces.json.JSONArray;
+import org.primefaces.json.JSONObject;
 
+import persistence.Report;
 import sessionBeans.RecommendationService;
 
 
@@ -20,7 +22,7 @@ public class RecommendationBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	static Report report10 = new Report();
 	String EmailParticipent ;
 	
 	 ArrayList<Object> listdata = new ArrayList<Object>();   
@@ -56,7 +58,22 @@ public class RecommendationBean implements Serializable{
 	}
 
 	
-	 
+	public String getPageDetails(int recommendationId) {
+
+		report10.setEventId(recommendationId);
+		return "/xhtml/Recommendation?faces-redirect=true";
+
+	}
+
+	@GET
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	public Object getRecommendation() {
+		String lr = recommendationservice.consomation();
+		JSONObject array = new JSONObject(lr);
+
+		return array;
+
+	}
 	 
 
 }

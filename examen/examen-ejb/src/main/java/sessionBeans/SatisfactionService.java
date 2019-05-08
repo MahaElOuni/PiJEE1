@@ -1,6 +1,6 @@
 package sessionBeans;
 
-import java.awt.Button;
+
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -11,6 +11,9 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+
+
 
 @Stateless
 @LocalBean
@@ -24,7 +27,7 @@ public class SatisfactionService implements SatisfactionServiceLocal,Satisfactio
         // TODO Auto-generated constructor stub
     }
 	
-	
+    @Override
 	public String consomation() {
 		Client client=ClientBuilder.newClient();
 		WebTarget target=client.target("http://localhost:9233/api/Satisfaction/GET");
@@ -36,10 +39,10 @@ public class SatisfactionService implements SatisfactionServiceLocal,Satisfactio
 		System.out.println(result);
 		return result;
 
-}
-	
+           }
+
 	@Override
-	public int EventLikers() {
+	public String EventLikers(int eventId) {
 		 int like=0;
 		Client client=ClientBuilder.newClient();
 		WebTarget target=client.target("http://localhost:9233/api/Event/GetEventLikers/4");
@@ -61,8 +64,10 @@ public class SatisfactionService implements SatisfactionServiceLocal,Satisfactio
             } 
          }
 		
-		return like;
+		return result;
 	}
+	
+	
 	
 	 
 

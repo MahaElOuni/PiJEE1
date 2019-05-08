@@ -7,4 +7,6 @@ public interface BlogServiceLocal {
 	public String consomation();
 
 	String consomationBlog(int BlogId);
+	public String Add(String s );
+	 public int getAll();
 }

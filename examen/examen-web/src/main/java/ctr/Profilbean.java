@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.json.JSONObject;
+
 import persistence.User;
 import sessionBeans.UserProfilServiceRemote;
 
@@ -16,9 +18,13 @@ public class Profilbean implements Serializable {
 	@EJB
 	UserProfilServiceRemote userprofile;
 	private User users;
-	public User Detail( int id){
+	public Object Detail(){
+		 System.out.println("emchii");
+		 String lr= userprofile.getProfilUserById(Loginbean.idUser);	
+		    JSONObject array = new JSONObject(lr);
+	       
+	        return array;
 		
-		 return userprofile.getProfilUserById(id);
 		
 		
 	}
