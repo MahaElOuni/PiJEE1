@@ -3,7 +3,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      template="/WEB-INF/template/template.xhtml">
+      template="/WEB-INF/template/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
 	<ui:define name="title">
 		<title>My Event</title>
 	</ui:define>
@@ -78,15 +79,12 @@
                     </div>
                     <ul class="blog_meta list">
                         <h:form id="form">
-                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton action="#{eventBean.sendMail()}"  value="sendmail"><span class="lnr lnr-arrow-right"></span></h:commandButton></li>
- 						<li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton action="#{eventBean.createPDF(event.get('EventId'))}"  onclick="this.form.target='_blank'" class="genric-btn default-border circle arrow" value="View Report"><span class="lnr lnr-arrow-right"></span></h:commandButton></li>
-                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow">Edit Event<span class="lnr lnr-arrow-right"></span></a></li>
-                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a class="genric-btn default-border circle arrow" >Add Organizer<span class="lnr lnr-arrow-right"></span></a></li>
-                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a href="" class="genric-btn default-border circle arrow" >Participant List<span class="lnr lnr-arrow-right"></span></a></li>
-                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconDelere.png" style="height:20px;width:20px" /><button class="genric-btn default-border circle arrow">Delete</button></li>
+                        <li><img src="${facesContext.externalContext.requestContextPath}/img/iconOgranizer.png" style="height:20px;width:20px" /><a class="genric-btn default-border circle arrow" onclick="showGrpMemberSearchPageCalenderLeave()">Add Organizer<span class="lnr lnr-arrow-right"></span></a></li>
+                         <li><img src="${facesContext.externalContext.requestContextPath}/img/iconEdit.png" style="height:20px;width:20px" /><h:commandButton action="#{eventBean.createPDF(event.get('EventId'))}"  onclick="this.form.target='_blank'" class="genric-btn default-border circle arrow" value="See The Report"><span class="lnr lnr-arrow-right"></span></h:commandButton></li>
+                       
                         </h:form>
                     </ul>
-
+              
                 </div>
 
             </div>
@@ -95,7 +93,12 @@
     </section>
     <!--================End Welcome Area =================-->
 
-
+	<script>
+	function showGrpMemberSearchPageCalenderLeave() { 
+     window.open('/examen-web/xhtml/popup.xhtml','mywindow', 'resizable=no,toolbar=no,scrollbars=yes,height=450,width=530,top=145,left=235');
+     return true;
+ }
+	</script>
    
  </ui:repeat>
  

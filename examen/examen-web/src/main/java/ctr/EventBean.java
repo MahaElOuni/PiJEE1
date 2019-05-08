@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -31,7 +32,10 @@ import persistence.Organizer;
 import persistence.Report;
 import sessionBeans.AdminService;
 import sessionBeans.EventService;
-
+import java.util.*; 
+import javax.mail.*; 
+import javax.mail.PasswordAuthentication;
+import javax.mail.internet.*;
 
 @ManagedBean(name = "eventBean")
 @SessionScoped
@@ -46,6 +50,8 @@ public class EventBean implements Serializable{
 	 private String description;
 	 private String address;
 	 private String organizedBy;
+	 private String emailOrganizer;
+	 private String taskTitle;
 	
 	 ArrayList<Object> listdata = new ArrayList<Object>();    
 	 
@@ -287,6 +293,12 @@ public class EventBean implements Serializable{
 	public int getNumberOrganizer(){
 		return getOrganizers().size();
 	}
+	
+	// Delete Event
+	public String eventDelete(int eventID){
+		eventService.deleteEvent(eventID);
+		 return "/xhtml/myEvent?faces-redirect=true";
+	}
 	 public int getId() {
 		return id;
 	}
@@ -422,4 +434,70 @@ public class EventBean implements Serializable{
 	            System.out.println(ex);
 	        }
 	}*/
+	@GET
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	public int getIdOfOrganizer(String email){
+		return eventService.getOrganizerId(email);
+	}
+	@POST
+	@javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	public void sendEmail(){
+		
+		int idOrganizer=getIdOfOrganizer(emailOrganizer);
+		System.out.println(idOrganizer);
+		System.out.println(report.getEventId());
+		System.out.println(taskTitle);
+		String jsonString = new JSONObject().put("UserId", idOrganizer).put("EventId", report.getEventId()).put("TaskTitle", taskTitle).toString();
+		 eventService.addOrganizer(jsonString);
+		//FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("vous avez reserver"+" "+Quantites+" "+"tickets"));
+		final String username = "maha.elouni@esprit.tn";
+		final String password = "12812152";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+
+		});
+		try {
+			
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("levio"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailOrganizer));
+			message.setSubject("New Task assigned to you");
+			message.setText("Dear Mr&Ms, your president assigned you new task ' "+taskTitle+" ' please visite your account in ConsultTech to finish your tasks, good job and Best regards,");
+			Transport.send(message);
+			System.out.println("Was the email : Done");
+		} catch (Exception e) {
+			// throw new RuntimeException(e);
+			System.out.println(e.getMessage());
+		}
+	}
+
+
+	public String getEmailOrganizer() {
+		return emailOrganizer;
+	}
+
+
+	public void setEmailOrganizer(String emailOrganizer) {
+		this.emailOrganizer = emailOrganizer;
+	}
+
+
+	public String getTaskTitle() {
+		return taskTitle;
+	}
+
+
+	public void setTaskTitle(String taskTitle) {
+		this.taskTitle = taskTitle;
+	}
+	
 }

@@ -6,11 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
-  		<title>Facelet Title</title>
+  		<title> <h:outputText value="${eventBean.repport.get('Title')}" /></title>
   	</h:head>
     <h:body>
         <img src="../img/logo2.png" style="position: absolute; top: 0; left: 0;"  width="150" height="50"/>
-        <label style="position: absolute; top: 0; right: 0; text-align:right;"><span>"<h:outputLabel value="${eventBean.repport.get('Slogan')}" />"</span></label>
+        <label style="position: absolute; top: 0; right: 0; text-align:right;color: #2c28b1"><span>"<h:outputLabel value="${eventBean.repport.get('Slogan')}" />"</span></label>
        
         <br/>
         <br/>
@@ -23,27 +23,35 @@
       <h4>From:</h4><h:outputLabel value="${eventBean.repport.get('Start')}" /><h4>To:</h4><h:outputLabel value="${eventBean.repport.get('End')}" />        
        <br/>
      
-      <div style="float: left">
+     
           <br/>
-     	<img src="${facesContext.externalContext.requestContextPath}/img/${eventBean.repport.get('Photo')}" alt="post" style="height: 250px; width: 350px;margin-left: auto; margin-right: auto"  />
-     	</div>
-     	<div style="float: reight;size: 50"  >
+     	<img src="${facesContext.externalContext.requestContextPath}/img/${eventBean.repport.get('Photo')}" alt="post" style="height: 450px; width: 550px;margin-left: auto; margin-right: auto"  />
+     	
+     	<div>
      	<br/>
      	<textarea ><h:outputText value="${eventBean.repport.get('Description')}"></h:outputText></textarea>         
-     </div>
-     <div style="clear: left;"/>
-     <div>        
+   </div>
+  
+     <div style="text-align: center;">        
       	<br/>
       	<span style="color: #2c28b1">Places Number:<h:outputLabel value="${eventBean.repport.get('NumberPlaces')}" style="color:black" /></span>
-      	
+      	<label style="color: white;">okk</label>
       	<span style="color: #2c28b1">Participant number:<h:outputLabel value="${eventBean.participantNumber}" style="color:black" /> </span>
-       	<br/>
+       	<label style="color: white;">okk</label>
       	<span style="color: #2c28b1">Organizer number:<h:outputLabel value="${eventBean.numberOrganizer}" style="color:black" /> </span>
       </div>  
+      <div style="text-align: center;">
      <p:graphicImage value="#{eventBean.likersNumber}" />
+     </div>
      <br/>
      <br/>
-     <h:dataTable value="#{eventBean.organizers}" var="organizer" border="1">
+     <div style="text-align: center;">
+      	<br/>
+      	<h3 style="color:#2c28b1 ">Your Organizers And Their Tasks</h3>
+     </div>
+     <div style="text-align: center;">
+        <br/>
+     <h:dataTable value="#{eventBean.organizers}" var="organizer" border="3" >
 		<h:column>
 			<f:facet name="header">
 				<h:outputText value="Organizer Email" />
@@ -56,6 +64,7 @@
 			</f:facet>
 			<h:outputText value="#{organizer.taskTitle}" />
 		</h:column>
-</h:dataTable>
+	</h:dataTable>
+		</div>
     </h:body>
 </html>
