@@ -45,9 +45,9 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 	}
 
 	@Override
-	public String consomationPresidentEvent() {
+	public String consomationPresidentEvent(int id) {
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/Event/GetEventPresident");
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetEventPresident/"+id);
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
