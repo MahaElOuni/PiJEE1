@@ -3,7 +3,6 @@ package gui;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import sessionBeans.FormServiceRemote;
 
 public class TestForm {
 
@@ -12,7 +11,7 @@ public class TestForm {
 
 		InitialContext ctx= new InitialContext();
 		Object obj=ctx.lookup("examen-ear/examen-ejb/FormService!sessionBeans.FormServiceRemote");
-		FormServiceRemote client= (FormServiceRemote) obj;
+		//FormServiceRemote client= (FormServiceRemote) obj;
 		//client.ConsommationGetAll();
 		//client.ConsommationGetById(19);
 		//client.Consommation3(8);
