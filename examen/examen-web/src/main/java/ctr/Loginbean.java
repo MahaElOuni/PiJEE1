@@ -20,7 +20,7 @@ public class Loginbean implements Serializable {
 	private Boolean loggedIn;
 	private String role;
 	private String etat;
-	
+	public static int idUser;
 	@EJB
 	LoginServiceRemote loginService;
 	
@@ -32,7 +32,8 @@ public class Loginbean implements Serializable {
 	{
 		String navigateTo = "null";
 		user=loginService.loginCheck(login, password);
-		
+		idUser=user;
+		System.out.println("userrrr="+idUser);
 
 		if ( user != 0 ) {
 			
@@ -45,17 +46,16 @@ public class Loginbean implements Serializable {
 			}
 			else{
 				if(etat.equals("Pending")){
-					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("stana la7dha"));
+					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("    Your request is in court of treatment"));
 				}
 				else if (etat.equals("Rejected")){
-					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("bara rawa7"));
+					FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("    Your request is rejected"));
 				}
 				else{
 					navigateTo = "/xhtml/home.xhtml"; 
 					loggedIn = true; 	
 				}
-			}
-				
+			}			
 		}
 		else {
 			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));

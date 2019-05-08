@@ -49,10 +49,10 @@
 
 
                             <li class="nav-item submenu dropdown">
-                                <h:commandButton class="tickets_btn" id="btn" value="Log Out" action="#{loginBean.doLogout}" />
-                               <!--   <a href="" class="tickets_btn">Log Out</a>-->
+                              <!--  <h:commandButton class="tickets_btn" id="btn" value="Log Out" action="#{loginbean.doLogout()}" />-->
+                                 <a href="${facesContext.externalContext.requestContextPath}/xhtml/login.xhtml" class="tickets_btn">Log Out</a>
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="">Show Profile</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="${facesContext.externalContext.requestContextPath}/xhtml/ProfilUser.xhtml">Show Profile</a></li>
 
                                 </ul>
                             </li>

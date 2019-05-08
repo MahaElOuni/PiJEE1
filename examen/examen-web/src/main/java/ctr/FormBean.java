@@ -39,6 +39,13 @@ public class FormBean implements Serializable {
 	private String methodeDePayemment;
 	private String participant;
 	
+	private Form form;
+	private String lr;
+	
+	
+	
+	private ArrayList<Object> objects = new ArrayList<Object>();
+	
 	private Form o;
 
 	public Form getO() {
@@ -75,7 +82,8 @@ public class FormBean implements Serializable {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Object> getAll(){
-		String lr= formService.consommationGet();
+		
+		lr= formService.consommationGet();
 		JSONArray array= new JSONArray(lr);
 		ArrayList<Object> listdata=new ArrayList<Object>();
 		
@@ -88,12 +96,21 @@ public class FormBean implements Serializable {
 				
 			}
 		}
+		System.out.println(listdata);
 		return listdata;
+	}
+	
+	public String showFormDetail(int id){
+		
+		return "/xhtml/DetailsForms.xhtml";
 	}
 
 	
 	public String getById(int id){
-			o= formService.getById(id);
+		System.err.println("*****************************************************************************hedha el id : "+id);
+		try{
+		o= formService.getById(id);
+		System.out.println(o);
 		setFormId(o.getFormId());
 		setEventId(o.getEventId());
 		setTitle(o.getTitle());
@@ -105,10 +122,14 @@ public class FormBean implements Serializable {
 		setCountrie(o.getCountrie());
 		setAddress(o.getAddress());
 		//setParticipant(o.getParticipant());
+
+		}catch(Exception e){}
+
+
 		
 		
 		
-		return "DetailsForms.jsf?faces-redirect=true";
+		return "/xhtml/DetailsForms.xhtml";
 	}
 
 
@@ -260,17 +281,24 @@ public class FormBean implements Serializable {
 	}
 	
 	
+	public ArrayList<Object> getObjects() {
+		return this.getAll();
+	}
+
+	public void setObjects(ArrayList<Object> objects) {
+		this.objects = objects;
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public String getLr() {
+		return lr;
+	}
+
+	public void setLr(String lr) {
+		this.lr = lr;
+	}
+
 	private PaginationHelper pagination;
 	private int selectedItemIndex;
 	private DataModel dtmdl = null;

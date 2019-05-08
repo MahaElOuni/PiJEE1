@@ -34,12 +34,28 @@
      <div style="clear: left;"/>
      <div>        
       	<br/>
-      	<span style="color: #2c28b1">Place number: </span>
-      	<br/>
-      	<span style="color: #2c28b1">Participant number: </span>
+      	<span style="color: #2c28b1">Places Number:<h:outputLabel value="${eventBean.repport.get('NumberPlaces')}" style="color:black" /></span>
+      	
+      	<span style="color: #2c28b1">Participant number:<h:outputLabel value="${eventBean.participantNumber}" style="color:black" /> </span>
        	<br/>
-      	<span style="color: #2c28b1">Organizer number: </span>
+      	<span style="color: #2c28b1">Organizer number:<h:outputLabel value="${eventBean.numberOrganizer}" style="color:black" /> </span>
       </div>  
      <p:graphicImage value="#{eventBean.likersNumber}" />
+     <br/>
+     <br/>
+     <h:dataTable value="#{eventBean.organizers}" var="organizer" border="1">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Organizer Email" />
+			</f:facet>
+			<h:outputText value="#{organizer.email}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Task Title" />
+			</f:facet>
+			<h:outputText value="#{organizer.taskTitle}" />
+		</h:column>
+</h:dataTable>
     </h:body>
 </html>
