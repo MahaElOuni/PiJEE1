@@ -6,6 +6,6 @@ import persistence.User;
 
 @Local
 public interface UserProfilServiceLocal {
-	public User getProfilUserById(int id);
+	public String getProfilUserById(int id);
 
 }
