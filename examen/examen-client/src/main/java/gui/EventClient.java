@@ -11,7 +11,7 @@ public class EventClient {
 		InitialContext ctx=new InitialContext();
 		Object obj=ctx.lookup("/examen-ear/examen-ejb/EventService!sessionBeans.EventServiceRemote");
 		EventServiceRemote client=(EventServiceRemote) obj;
-		client.consomation();
+		client.consomationEventLikers(3);
 
 	}
 

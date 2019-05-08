@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">
+		<title>Blogs</title>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center"
+			style="background-image: url(${facesContext.externalContext.requestContextPath}/img/banner/home-banner.jpg)">
+			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
+				data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="container">
+				<div class="banner_content text-center">
+					<div class="page_link">
+						<a href="index.html">Home</a> <a href="about-us.html">Blog</a>
+					</div>
+					<br />
+					<h2>The Blogs that may interests you</h2>
+				</div>
+			</div>
+		</div>
+		</section>
+		<!--================End Home Banner Area =================-->
+		<br />
+		<div class="col-lg-4"
+			style="background-color: transparent; margin-left: 1050px">
+			<div class="blog_right_sidebar"
+				style="background-color: transparent; border: thin">
+				<div class="blog_right_sidebar">
+					<aside class="single_sidebar_widget search_widget">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search Posts">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="lnr lnr-magnifier"></i>
+								</button>
+						</span> </input>
+					</div>
+					<div class="br"></div>
+					</aside>
+
+					<aside class="single_sidebar_widget popular_post_widget">
+					<h3 class="widget_title">Popular Posts</h3>
+					<div class="media post_item">
+						<img src="~/img/blog/popular-post/post1.jpg" alt="post">
+							<div class="media-body">
+								<a href="blog-details.html"><h3>Space The Final
+										Frontier</h3></a>
+							</div> </img>
+					</div>
+
+
+					<div class="br"></div>
+					</aside>
+					<aside class="single_sidebar_widget ads_widget"> <a
+						href="#"><img class="img-fluid" src="~/img/blog/add.jpg"
+						alt=""></img></a>
+					<div class="br"></div>
+					</aside>
+				</div>
+
+			</div>
+		</div>
+		<div class="blog_left_sidebar">
+			<ui:repeat value="${blogBean.all}" var="blog">
+				<article class="row blog_item">
+				<div class="col-md-3">
+					<div class="blog_info text-right">
+						<ul class="blog_meta list">
+							<li><h:outputText value="${blog.get('ne')}" /><i
+								class="lnr lnr-user"></i></li>
+							<li><h:outputText value="${blog.get('DatePost')}" /><i
+								class="lnr lnr-calendar-full"></i></li>
+
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div class="blog_post">
+						<img
+							src="${facesContext.externalContext.requestContextPath}/img/${blog.get('Photo')}"
+							alt="post" style="height: 275.3px; width: 510px" />
+						<div class="blog_details">
+							<h:outputText value="${blog.get('Titre')}" />
+							<p>
+								<h:outputText value="${blog.get('Contenu')}" />
+							</p>
+							<h:commandButton
+								action="#{blogBean.getPageDetails(blog.get('BlogId'))}"
+								value="${blog.get('Type')}" />
+							
+						</div>
+
+
+					</div>
+				</div>
+				</article>
+			</ui:repeat>
+		</div>
+
+	</ui:define>
+
+
+</ui:composition>

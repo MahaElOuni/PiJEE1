@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/WEB-INF/template/template.xhtml"> 
+
+	<ui:define name="title">
+		<title>Event Details</title>
+	</ui:define>
+	
+	<ui:define name="content">
+	
+	
+	   <!--================Start Home Banner Area =================-->
+    <section class="home_banner_area"  style="background-image:url(${facesContext.externalContext.requestContextPath}/img/${eventBean.eventDetail.get('Photo')})">
+        <div class="banner_inner">
+            <div class="container">
+
+                <div class="banner_content">
+                    <h2><h:outputText value="${eventBean.eventDetail.get('Title')}"></h:outputText> <br /><h:outputText value="${eventBean.eventDetail.get('Type')}"></h:outputText></h2>
+
+                    <a class="main_btn" href="#">Participate</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+    <!--================Event Time Area =================-->
+<div id="dateEdit" style="display:none"><h:outputText value="${eventBean.eventDetail.get('Start')}" />></div>
+    <section class="event_time_area">
+        <div class="container">
+            <div class="event_time_inner">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="event_text">
+                            <h3>This Event will Start in</h3>
+                            <p><h:outputText value="${eventBean.eventDetail.get('Description')}"></h:outputText>.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="timer_inner">
+                            <div id="timer" class="timer">
+                                <div class="timer__section days">
+                                    <div class="timer__number"></div>
+                                    <div class="timer__label">days</div>
+                                </div>
+                                <div class="timer__section hours">
+                                    <div class="timer__number"></div>
+                                    <div class="timer__label">hours</div>
+                                </div>
+                                <div class="timer__section minutes">
+                                    <div class="timer__number"></div>
+                                    <div class="timer__label">Minutes</div>
+                                </div>
+                                <div class="timer__section seconds">
+                                    <div class="timer__number"></div>
+                                    <div class="timer__label">seconds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Event Time Area =================-->
+    <!--================Event Schedule Area =================-->
+
+
+    <div class="container">
+        <div class="main_title">
+            <h2>Event Schedule</h2>
+        </div>
+        <div class="event_schedule_inner">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a style="align-content:center" class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Event Schedule</a>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <ui:repeat var="sc" value="${eventBean.eventScheduler}">
+                        <div class="media">
+                            <div class="d-flex">
+                               <img src="${facesContext.externalContext.requestContextPath}/img/Upload/${sc.get('Photo')}" style="height:100px;width:100px"></img>
+                            </div>
+                            <div class="media-body">
+
+                                <h5><h:outputText value="${sc.get('Duration')}" /></h5>
+                                <h4><h:outputText value="${sc.get('ProgramName')}" /></h4>
+                                <p><h:outputText value="${sc.get('Speaker')}" /></p>
+                            </div>
+                        </div>
+                   </ui:repeat>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--================End Event Schedule Area =================-->
+   
+	
+		
+	<script type="text/javascript" src="../dateformat.js"></script>
+	</ui:define>
+	
+	
+</ui:composition>
