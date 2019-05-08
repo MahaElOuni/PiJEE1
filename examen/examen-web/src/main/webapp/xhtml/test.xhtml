@@ -8,22 +8,63 @@
 <title>Notification Bar</title>  
 </h:head>  
 <h:body>  
-<p:notificationBar position="top" effect="fade" styleClass="top" widgetVar="notify">  
-<h:outputText value="This is a Primefaces notification." style="font-size:36px;" />  
-</p:notificationBar>  
-<p:graphicImage name="images/primefaces-logo.jpeg" /><br/><br/>  
-<p:commandButton value="Click for notification" onclick="PF('notify').show()" type="button" icon="ui-icon-arrow-1-s"/> 
-<br/>
-<br/>
-<br/>
-<br/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 
-<p:commandButton value="Click for notification" onclick="PF('notify').hide()" type="button" icon="ui-icon-arrow-1-s" class="notification">
- <span class="badge">3</span>
- </p:commandButton> 
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/event/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: "Maha",
+                            description: "ok",
+                            
+                            color: "red"",
+                           
+                        });
+                    })
 
-<h:outputLink value="#" onclick="PF('nv').show()">Show</h:outputLink>
-<h:outputLink value="#" onclick="PF('nv').hide()">Hide</h:outputLink>
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function GenerateCalender(events) {
+                $('#calender').fullCalendar('destroy');
+                $('#calender').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay,agenda'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        $('#myModal #eventTitle').text(calEvent.title);
+                        var $description = $('<div/>');
+                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                        if (calEvent.end != null) {
+                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                        }
+                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                        $('#myModal #pDetails').empty().html($description);
+
+                        $('#myModal').modal();
+                    }
+                })
+            }
+        })
+    </script>
  
 </h:body>  
 </html> 

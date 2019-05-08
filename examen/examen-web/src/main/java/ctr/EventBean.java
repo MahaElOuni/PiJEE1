@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import javax.ejb.EJB;
@@ -40,6 +41,7 @@ import org.primefaces.model.StreamedContent;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import persistence.Likers;
+import persistence.Organizer;
 import persistence.Report;
 import sessionBeans.AdminService;
 import sessionBeans.EventService;
@@ -263,6 +265,44 @@ public class EventBean implements Serializable{
 		return chart ;
 		
 	 }
+	 
+	 
+	//Get Participant number
+		
+	public int getParticipantNumber(){
+	     int number= eventService.consomationParticipantNumber(report.getEventId());	
+		return number;
+			 
+	}
+		 
+	//Get Organizer and Tasks
+	
+	@GET
+	 @javax.ws.rs.Produces(MediaType.APPLICATION_JSON)
+	 public ArrayList<Organizer> getOrganizers(){
+		ArrayList<Organizer> listOrganizer=new ArrayList<Organizer>();
+		    String lr= eventService.consomationOrganizerTasks(report.getEventId());	
+		    JSONArray array = new JSONArray(lr);
+	       
+	        
+	        if (array != null) { 
+	           for (int i=0;i<array.length();i++){ 
+	        	   JSONObject object = array.getJSONObject(i);
+	        	   Organizer organizer=new Organizer();
+	        	   organizer.setEmail(eventService.consomationOrganizerEmail(object.getInt("UserId")));
+	               organizer.setTaskTitle(object.getString("TaskTitle"));
+	               listOrganizer.add(organizer);
+	               
+	           } 
+	        }
+	        return listOrganizer;
+		 
+	 }
+	public int getNumberOrganizer(){
+		return getOrganizers().size();
+	}
+	
+	
 	 public int getId() {
 		return id;
 	}
