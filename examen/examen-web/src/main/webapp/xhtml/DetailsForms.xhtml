@@ -3,41 +3,84 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/template/template.xhtml">
      
-   
-    <ui:define name="content">
-<h:head></h:head>
-<body>
-	<h2>Quiz Details</h2>
+   <ui:define name="title">
+		<title>Events List</title>
+	</ui:define>
+
+	<ui:define name="content">
+		<!--================Welcome Home Banner Area =================-->
+		<!--================Welcome Home Banner Area =================-->
+		<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center"
+			style="background-image: url(${facesContext.externalContext.requestContextPath}/img/banner/home-banner.jpg)">
+			<div class="overlay bg-parallax" data-stellar-ratio="0.9"
+				data-stellar-vertical-offset="0" data-background=""></div>
+			<div class="container">
+				<div class="banner_content text-center">
+					<div class="page_link">
+						<a href="index.html">Home</a> <a href="about-us.html">Events</a>
+					</div>
+					<br />
+					<h2>Forms</h2>
+				</div>
+			</div>
+		</div>
+		</section>
+		<!--================End Home Banner Area =================-->
+		<br />
+		<div class="col-lg-4"
+			style="background-color: transparent; margin-left: 1050px">
+			<div class="blog_right_sidebar"
+				style="background-color: transparent; border: thin">
+				<aside class="single_sidebar_widget search_widget"
+					style="background-color:transparent">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search"
+						id="Search" /> <span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i class="lnr lnr-magnifier"></i>
+						</button>
+					</span>
+				</div>
+				<!-- /input-group -->
+				<div class="br"></div>
+				</aside>
+			</div>
+		</div>
+
+
+			<!--================Welcome Area =================-->
 		<h:form>
 		<h:panelGrid columns="2">
 
 				<h:outputText value="form.formId " style="font-weight:bold" />
-				<h:outputText value="#{form.o.formId}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.formId}" style="font-weight:bold" />
 				<h:outputText value="EventId " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.eventId}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.eventId}" style="font-weight:bold" />
 				<h:outputText value="Title " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.title}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.title}" style="font-weight:bold" />
 
 				<h:outputText value="Pseudo " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.pseudo}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.pseudo}" style="font-weight:bold" />
 				<h:outputText value="CIN " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.cin}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.cin}" style="font-weight:bold" />
 				<h:outputText value="Mail " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.mail}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.mail}" style="font-weight:bold" />
 				<h:outputText value="Age " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.age}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.age}" style="font-weight:bold" />
 				<h:outputText value="Profession " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.profession}"
+				<h:outputText value="#{formBean.profession}"
 					style="font-weight:bold" />
 				<h:outputText value="Countrie " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.countrie}"
+				<h:outputText value="#{formBean.countrie}"
 					style="font-weight:bold" />
 				<h:outputText value="Address " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.address}" style="font-weight:bold" />
+				<h:outputText value="#{formBean.address}" style="font-weight:bold" />
 				<h:outputText value="Participant " style="font-weight:bold" />
-				<h:outputText value="#{formBean.o.participant}"
+				<h:outputText value="#{formBean.participant}"
 					style="font-weight:bold" />
 
 
@@ -46,7 +89,6 @@
 
 		</h:form>
 
-	</body>
     </ui:define>
 
 </ui:composition>    

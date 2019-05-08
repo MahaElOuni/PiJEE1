@@ -12,6 +12,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.json.JSONObject;
+
 import persistence.Form;
 
 /**
@@ -63,7 +65,27 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 	    	Response res=(Response) hello.request().get();
 	    	
 	    	String s = res.readEntity(String.class);
+	    	JSONObject object = new JSONObject(s);
 	    	Form condi = new Form();
+	    	
+	    	condi.setAddress(object.getString("Address"));
+	    	condi.setFormDate(object.getString("FormDate"));
+	    	condi.setFormId(object.getInt("FormId"));
+	    	condi.setPseudo(object.getString("Pseudo"));
+	    	condi.setCin(object.getString("CIN"));
+	    	condi.setSex(object.getInt("Sex"));
+	    	condi.setAge(object.getInt("Age"));
+	    	condi.setProfession(object.getString("Profession"));
+	    	condi.setMail(object.getString("Mail"));
+	    	condi.setCountrie(object.getString("Countrie"));
+	    	condi.setParticipant(object.getBoolean("Participant"));
+	    	condi.setEventId(object.getInt("EventId"));
+	    	condi.setTitle(object.getString("Title"));
+	    	condi.setMethodeDePayemment(object.getInt("MethodeDePayemment"));
+	    	
+	    	
+	    	
+	    	  
 	    	
 			 
 			return condi;
