@@ -450,7 +450,7 @@ public class EventBean implements Serializable{
 		String jsonString = new JSONObject().put("UserId", idOrganizer).put("EventId", report.getEventId()).put("TaskTitle", taskTitle).toString();
 		 eventService.addOrganizer(jsonString);
 		//FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("vous avez reserver"+" "+Quantites+" "+"tickets"));
-		final String username = "maha.elouni@esprit.tn";
+		final String username = "consulteckesprit@gmail.com";
 		final String password = "12812152";
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
