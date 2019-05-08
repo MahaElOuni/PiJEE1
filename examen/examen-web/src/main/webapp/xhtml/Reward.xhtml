@@ -57,7 +57,7 @@
                     <table>
                         <thead>
                             <tr class="row100 head">
-                                <th class="cell100 column1">Titre</th>
+                                <th class="cell100 column1"></th>
                             </tr>
                         </thead>
                         <tbody style="margin-left:50px">
@@ -77,32 +77,39 @@
                     <div class="table100-nextcols">
                         <table>
                             <thead>
-                                <tr class="row100 head">
-                                    <th class="cell100 column2">Price1</th>
-                                    <th class="cell100 column3">Price2</th>
-                                    <th class="cell100 column3">Price3</th>
-                                    
-                                </tr>
+                                
                             </thead>
                             <tbody>
-                               <ui:repeat value="${rewardBean.all}" var="reward" border="1">
-                                <tr>
-                                    <td>
-                                    <h:outputText value="${reward.get('Price1')}" />
-                                      
-                                    </td>
-                                    <td>
-                                    <h:outputText value="${reward.get('Price2')}" />
-                                      
-                                    </td>
-                                    <td>
-                                    <h:outputText value="${reward.get('Price3')}" />
-                                      
-                                    </td>
+                  
+                              
+                              
 
-                                    
-                                </tr>
-                              </ui:repeat>
+<body style="margin-top: 5em;background-color: #ecf0f1;text-align: center;font-family: Open Sans">
+    <h1 class="title" style="color: #2c3e50;text-transform: uppercase">Price podium</h1>
+    <ui:repeat value="${rewardBean.all}" var="reward" border="1">
+        <label>Description:</label>
+        <h:outputText value="${reward.get('titre')}" />
+        <br /><br />
+        <div class="first-place" style="background-color: #2ecc71;height: 100px;width: 100px;margin: 0 auto;line-height: 100px
+	                                ;font-size: 50px;font-weight: 800;color: #27ae60">
+            <h:outputText value="${reward.get('Price1')}" />
+        </div>
+        <div class="second-place" style="background-color: #f1c40f;height: 100px;width: 100px;margin: 0 auto;line-height: 100px
+	                                                    ;font-size: 50px;font-weight: 800;color: #f39c12;display: inline-block">
+           <h:outputText value="${reward.get('Price2')}" />
+        </div>
+        <div class="third-place" style="background-color: #e74c3c;height: 100px;width: 100px;margin: 0 auto;margin-left: -4px
+	                                                ;line-height: 100px;font-size: 50px;font-weight: 800;color: #c0392b;display: inline-block">
+              <h:outputText value="${reward.get('Price3')}" />
+                                      
+        </div>
+        <br />
+        </ui:repeat>
+
+
+</body>
+
+                              
                                 </tbody>
                         </table>
                     </div>

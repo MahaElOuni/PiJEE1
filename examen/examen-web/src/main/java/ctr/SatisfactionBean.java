@@ -50,6 +50,26 @@ public class SatisfactionBean implements Serializable {
 	        return listdata;
 			
 		}
+
+
+	public int getNbr() {
+		return nbr;
+	}
+
+
+	public void setNbr(int nbr) {
+		this.nbr = nbr;
+	}
+
+
+	public int getNbb() {
+		return nbb;
+	}
+
+
+	public void setNbb(int nbb) {
+		this.nbb = nbb;
+	}
 	
 	
 }
