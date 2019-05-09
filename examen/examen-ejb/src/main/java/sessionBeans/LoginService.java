@@ -35,7 +35,7 @@ public class LoginService implements LoginServiceRemote, LoginServiceLocal {
     public void getUsers(){
     	
     	Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/api/AdminAPI/Get");
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/AdminAPI/Get");
     	WebTarget hello = target.path("");
         Response response=hello.request().get();   
         String result= response.readEntity(String.class);
@@ -53,7 +53,7 @@ public class LoginService implements LoginServiceRemote, LoginServiceLocal {
 		form.param("Password",password);
 		
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/LOGIN");
+		WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/LOGIN");
 		
 		try{
 			

@@ -35,7 +35,7 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 		// TODO Auto-generated method stub
 		
 		Client client =ClientBuilder.newClient();
-		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/Get");
+		WebTarget target= client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/FormAPIController/Get");
 		Response response= target.request().get();
 		String result= response.readEntity(String.class);
 		System.out.println(result);
@@ -46,7 +46,7 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 	@Override
 	public String consommationGetByEvent() {
 		Client client =ClientBuilder.newClient();
-		WebTarget target= client.target("http://localhost:9233/api/FormAPIController/ByEvent/");
+		WebTarget target= client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/FormAPIController/ByEvent/");
 		Response response= target.request().get();
 		String result= response.readEntity(String.class);
 		System.out.println(result);
@@ -60,7 +60,7 @@ public class FormService implements FormServiceRemote, FormServiceLocal {
 	public Form getById(int id) {
 			System.out.println("***** get condidate *****");
 	    	Client cl = ClientBuilder.newClient();
-			WebTarget target = cl.target("http://localhost:9233/api"); 
+			WebTarget target = cl.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api"); 
 			WebTarget hello = target.path("FormAPIController/Get/"+id);     	
 	    	Response res=(Response) hello.request().get();
 	    	

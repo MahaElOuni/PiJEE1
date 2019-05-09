@@ -30,7 +30,7 @@ public class SatisfactionService implements SatisfactionServiceLocal,Satisfactio
     @Override
 	public String consomation() {
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/Satisfaction/GET");
+		WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/Satisfaction/GET");
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
@@ -45,7 +45,7 @@ public class SatisfactionService implements SatisfactionServiceLocal,Satisfactio
 	public String EventLikers(int eventId) {
 		 int like=0;
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/Event/GetEventLikers/4");
+		WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/Event/GetEventLikers/4");
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);

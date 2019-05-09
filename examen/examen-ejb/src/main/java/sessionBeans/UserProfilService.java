@@ -31,7 +31,7 @@ public class UserProfilService implements UserProfilServiceRemote, UserProfilSer
 	public String getProfilUserById(int id) {
 		// TODO Auto-generated method stub
 		Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/api/UserProfilAPI/Get?id="+id);
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/UserProfilAPI/Get?id="+id);
     	WebTarget hello = target.path("");
         Response response=hello.request().get();
         String result= response.readEntity(String.class);

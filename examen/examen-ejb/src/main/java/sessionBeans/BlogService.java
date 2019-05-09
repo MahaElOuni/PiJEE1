@@ -27,7 +27,7 @@ public class BlogService implements BlogServiceRemote, BlogServiceLocal {
 	@Override
 	public String consomation() {
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:9233/api/BlogAPI/Get");
+		WebTarget target = client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/BlogAPI/Get");
 
 		Response response = target.request().get();
 		String result = response.readEntity(String.class);
@@ -40,7 +40,7 @@ public class BlogService implements BlogServiceRemote, BlogServiceLocal {
 	@Override
 	public String consomationBlog(int BlogId) {
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:9233/api/BlogAPI/Get/" + BlogId);
+		WebTarget target = client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/BlogAPI/Get/" + BlogId);
 
 		Response response = target.request().get();
 		String result = response.readEntity(String.class);
@@ -53,7 +53,7 @@ public class BlogService implements BlogServiceRemote, BlogServiceLocal {
 	public String Add(String s) {
 
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:9233/api/BlogAPI/rate");
+		WebTarget target = client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/BlogAPI/rate");
 		Invocation.Builder invocationBuilder = target.request();
 		Response response = invocationBuilder.post(Entity.entity(s, MediaType.APPLICATION_JSON));
 		return response.readEntity(String.class);
@@ -61,7 +61,7 @@ public class BlogService implements BlogServiceRemote, BlogServiceLocal {
 
 	static javax.ws.rs.client.Client c = ClientBuilder.newClient();
 	// set the appropriate URL
-	static String getUrl = "http://localhost:9233/api/BlogAPI/GetAllrat";
+	static String getUrl = "http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/BlogAPI/GetAllrat";
 
 	public int getAll() {
 

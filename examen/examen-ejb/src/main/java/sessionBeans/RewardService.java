@@ -24,7 +24,7 @@ public class RewardService implements RecommendationServiceLocal,RecommendationS
 	
 	public String consomation() {
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/Reward/GET");
+		WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/Reward/GET");
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);

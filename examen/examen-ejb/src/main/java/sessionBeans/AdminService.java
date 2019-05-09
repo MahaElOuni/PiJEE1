@@ -33,7 +33,7 @@ public class AdminService implements AdminServiceRemote, AdminServiceLocal {
 	public List<User> getPendingUser() {
 		// TODO Auto-generated method stub
 		Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/PendingUser");
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/PendingUser");
     	WebTarget hello = target.path("");
         Response response=hello.request().get();
         String result= response.readEntity(String.class);
@@ -67,7 +67,7 @@ public class AdminService implements AdminServiceRemote, AdminServiceLocal {
 	public void getUsers() {
 		// TODO Auto-generated method stub
 		Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/api/AdminAPI/Get");
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/AdminAPI/Get");
     	WebTarget hello = target.path("");
         Response response=hello.request().get();
         String result= response.readEntity(String.class);
@@ -79,7 +79,7 @@ public class AdminService implements AdminServiceRemote, AdminServiceLocal {
 	@Override
 	public String getEtatByIdUser(int id){
 		Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/GetUserId?id="+id);
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/GetUserId?id="+id);
         String s = target.request().get().readEntity(String.class);
         JSONObject jo = new JSONObject(s);
 		String etat = jo.getString("Etat");
@@ -89,7 +89,7 @@ public class AdminService implements AdminServiceRemote, AdminServiceLocal {
 	@Override
 	public String getRoleByIdUser(int id){
 		Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/GetUserId?id="+id);
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/GetUserId?id="+id);
         String s = target.request().get().readEntity(String.class);
         JSONObject jo = new JSONObject(s);
 		String role = jo.getString("Role");
@@ -100,14 +100,14 @@ public class AdminService implements AdminServiceRemote, AdminServiceLocal {
 	public void changeState(int id,String state){
 		System.out.println("mel service admin "+id);
 		Client client = ClientBuilder.newClient();
-        WebTarget target=client.target("http://localhost:9233/changeState?id="+id+"&state="+state);
+        WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/changeState?id="+id+"&state="+state);
         String s = target.request().get().readEntity(String.class);
         
 	}
 	@Override
 	public String getAllUsers() {
 		Client client=ClientBuilder.newClient();
-		WebTarget target=client.target("http://localhost:9233/api/AdminAPI/Get");
+		WebTarget target=client.target("http://webapicontroller1-dev.eu-west-1.elasticbeanstalk.com/api/AdminAPI/Get");
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
 		return result;
