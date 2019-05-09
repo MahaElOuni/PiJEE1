@@ -28,73 +28,37 @@
     </div>
 </section>
 <!--================End Home Banner Area =================-->
-<br />
-<div class="col-lg-4" style="background-color:transparent;margin-left:1050px">
-    <div class="blog_right_sidebar" style="background-color:transparent;border:thin">
-        <aside class="single_sidebar_widget search_widget" style="background-color:transparent">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" id="Search"></input>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                </span>
-            </div><!-- /input-group -->
-            <div class="br"></div>
-        </aside>
-    </div>
-</div>
+<br /> 
+	<h:form id="form">
+	<h:dataTable value="#{recommendationBean.all}" var="recommendation" border="1" class="table table-striped" >
+	
+	
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="First Name" />
+		</f:facet>
+		<h:outputText value="#{recommendation.get('Nom')}" />
+	</h:column>
+	
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="Last Name" />
+		</f:facet>
+		<h:outputText value="#{recommendation.get('Prenom')}" />
+	</h:column>
+		
+	<h:column scope="col">	
+		<f:facet name="header">
+			<h:outputText value="Email" />
+		</f:facet>
+		<h:outputText value="#{recommendation.get('EmailParticipent')}" />
+	</h:column>
+	</h:dataTable>
+	</h:form>
 
 
 
 
- <h:form>
-<ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
-
-
-</ui:repeat>
-
- 
-
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100 ver1">
-                <div class="table100-firstcol">
-                    <table>
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="cell100 column1">Email's Participant</th>
-                                 <th class="cell100 column2">First Name</th>
-                                    <th class="cell100 column3">Last Name</th>
-                            </tr>
-                        </thead>
-                        <tbody style="margin-left:50px">
-                            <ui:repeat value="${recommendationBean.all}" var="recommendation" border="1">
-                                <tr style="margin-left:100px">
-
-                                    <td style="margin-left:100px">
-                                       <h:outputText value="${recommendation.get('EmailParticipent')}" />
-                                    </td>
-                                    <td>
-                                    <h:outputText value="${recommendation.get('Nom')}" />
-                                      
-                                    </td>
-                                    <td>
-                                    <h:outputText value="${recommendation.get('Prenom')}" />
-                                      
-                                    </td>
-                                </tr>
-                             </ui:repeat>
-                            </tbody>
-                    </table>
-                </div>
-
-               
-            </div>
-        </div>
-    </div>
-</div>
-
-</h:form>
 	</ui:define>
 	
 </ui:composition>
