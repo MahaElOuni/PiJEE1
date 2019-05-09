@@ -7,7 +7,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.json.JSONArray;
@@ -142,6 +145,34 @@ public class EventService implements EventServiceRemote, EventServiceLocal {
 		
 		Response response=target.request().get();
 		String result=response.readEntity(String.class);
+		
+		//response.close();
+		
+		return result;
+	}
+
+	@Override
+	public void deleteEvent(int eventID) {
+		Client client=ClientBuilder.newClient();
+		client.target("http://localhost:9233/api/Event/Delete/"+eventID);
+	}
+
+	@Override
+	public String addOrganizer(String organizer) {
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target("http://localhost:9233/api/Event/PostTask");
+		Invocation.Builder invocationBuilder = target.request();
+		Response response = invocationBuilder.post(Entity.entity(organizer, MediaType.APPLICATION_JSON));
+		return response.readEntity(String.class);
+	}
+
+	@Override
+	public int getOrganizerId(String email) {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:9233/api/Event/GetOrganizerId?email="+email);
+		
+		Response response=target.request().get();
+		int result=response.readEntity(int.class);
 		
 		//response.close();
 		
