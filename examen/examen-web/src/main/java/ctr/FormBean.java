@@ -101,6 +101,8 @@ public class FormBean implements Serializable {
 		}
 		System.out.println(listdata);
 		return listdata;
+		
+		
 	}
 	
 	public String showFormDetail(int id){
@@ -108,7 +110,11 @@ public class FormBean implements Serializable {
 		return "/xhtml/DetailsForms.xhtml";
 	}
 
-	
+public String showAllForm(int id){
+		
+		return "/xhtml/listForm.xhtml";
+	}
+
 	public String getById(int id){
 		System.err.println("*****************************************************************************hedha el id : "+id);
 		try{

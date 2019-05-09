@@ -68,12 +68,14 @@
 											<h:commandButton
 												action="#{eventBean.getPageDetails(event.get('EventId'))}"
 												value="${event.get('Type')}" />
+												
 										</h:form>
 										<div class="border_line"></div>
 										<p>
 											<h:outputText value="${event.get('Slogan')}" />
 										</p>
 									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -114,6 +116,9 @@
 									href="${facesContext.externalContext.requestContextPath}/xhtml/Reward.xhtml">Reward List</a>
 									 <a class="main_btn"
 									href="${facesContext.externalContext.requestContextPath}/xhtml/Satisfaction.xhtml">Satisfaction</a>
+									
+									<a class="main_btn"
+									href="${facesContext.externalContext.requestContextPath}/xhtml/listForm.xhtml">Forms</a>
 									
 
 							</div>
